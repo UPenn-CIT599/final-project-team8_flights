@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -40,8 +41,30 @@ public class FlightWebScraping {
     System.out.println("running...");
 
     try {
-      //Get Document object from given url.
-      this.document = Jsoup.connect(this.url).get();
+      //start a url connection
+      Connection connection = Jsoup.connect(this.url);
+
+      /*user debug
+       * String strText = Jsoup.connect("http://www.useragentstring.com")
+          .get()
+          .text();
+      System.out.println(strText);
+      */
+
+      //set user agent to Mozilla
+      connection.userAgent("Mozilla/5.0");
+      //accept cookie
+      connection.cookie("auth", "token");
+      //set timeout to 10 seconds
+      connection.timeout(10 * 1000);
+      //Create an html Document object from the given url.
+      this.document = connection.get();
+      /*user debug
+       * String strText = Jsoup.connect("http://www.google.com/").userAgent("Mozilla/5.0")
+          .get()
+          .text();
+      System.out.println(strText);
+      */
       String title = document.title(); //Get title
       System.out.println("Title: " + title); //Print title.
 
@@ -53,16 +76,25 @@ public class FlightWebScraping {
       fIn = new FileWriter(scrapedCsvFileName);
       BufferedWriter csv = new BufferedWriter(fIn);      
       Elements divs = document.select("div.Base-Results-HorizonResult");
+      
+      csv.append("rank,price,departure flight duration,departure flight stops,"
+          + "departure details,arrival flight duration,arrival flight stops,"
+          + "arrival details");
+      
       for (Element div : divs) {
         String ariaLabel = div.attr("aria-label");
-        csv.append(ariaLabel + ',' + div.text() + "\n");
+        String entry = (ariaLabel + ',' + div.text());
+        String parsedEntry = HtmlParsing(entry);
+        
+        csv.append(parsedEntry + "\n");
       }
       fIn.close();
 
       System.out.println("Scraping complete.");
       
-    } catch (IOException e) {
-      e.printStackTrace();
+    } catch (IOException ioe) {
+      System.out.println("Exception: " + ioe);
+      //ioe.printStackTrace();
     }
   }
   
@@ -70,14 +102,14 @@ public class FlightWebScraping {
    * 
    * @param fileName
    */
-  public void HtmlParsing(String fileName) {
-    File input = new File(fileName);
-    try {
-      Document doc = Jsoup.parse(input, "UTF-8", "");
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+  public String HtmlParsing(String entry) {
+    entry = entry.replace(".", "|");
+    String[] parsedEntry = entry.split("\\|");
+    
+    for(String item : parsedEntry) {
+      System.out.println(item);
     }
+    return entry;
   }
 }
 
