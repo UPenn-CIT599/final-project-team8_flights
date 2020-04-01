@@ -51,7 +51,7 @@ public class FlightWebScrapingRunner {
     String departureAirport = "YVR";
     String arrivalAirport = "PEK";
     String departureDate = "2020-04-27";
-    String arrivalDate = "2020-05-04";
+    String arrivalDate = "2020-05-27";
     String ranking = "price_a";
     
     FlightWebScrapingRunner newFlight = new FlightWebScrapingRunner(baseUrl + ","
