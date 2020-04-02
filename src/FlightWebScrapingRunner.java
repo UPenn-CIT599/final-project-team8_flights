@@ -1,6 +1,12 @@
 
 public class FlightWebScrapingRunner {
   
+  //debug mode
+  //0 = no debug
+  //1 = web scraping debug
+  //2 = html parsing debug
+  Integer debugMode = 2;
+  
   String[] userInput = new String[6];
   String baseUrl = null;
   String departureAirport = null;
@@ -40,10 +46,9 @@ public class FlightWebScrapingRunner {
    * 
    */
   public void run() {
-    FlightWebScraping flight = new FlightWebScraping(url);
+    FlightWebScraping flight = new FlightWebScraping(url, debugMode);
     flight.HtmlScraping();
   }
-  
   
   public static void main(String[] args) {
     
