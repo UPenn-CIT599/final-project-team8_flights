@@ -5,7 +5,7 @@ public class FlightWebScrapingRunner {
   //0 = no debug
   //1 = web scraping debug
   //2 = html parsing debug
-  Integer debugMode = 2;
+  Integer debugMode = 0;
   
   String[] userInput = new String[6];
   String baseUrl = null;

@@ -182,8 +182,7 @@ public class FlightWebScraping {
         //|2 stops (CKG, TPE)|Total duration|25h 10m.Operated by EVA Air
 
         for (int i = 0; i < cells.length ; i++) {
-          if(i != 0 && i != 4 && i != 6 && i != 9 && i != 11 && i != 13 && i != 16 &&
-              i != 17 && i != 18 && i != 19 && i != 20 && i != 21) {
+          if(i != 0 && i != 4 && i != 6 && i != 9 && i != 11 && i != 13 && i <= 15) {
             parsed.append(cells[i]+"|");
           }
         }
