@@ -47,7 +47,7 @@ public class FlightWebScrapingRunner {
    */
   public void run() {
     FlightWebScraping flight = new FlightWebScraping(url, debugMode);
-    flight.HtmlScraping();
+    flight.HtmlScrapingParsing();
   }
   
   public static void main(String[] args) {

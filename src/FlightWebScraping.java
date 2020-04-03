@@ -7,6 +7,7 @@
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -26,8 +27,8 @@ public class FlightWebScraping {
   String url = null;
   Document document;
   String inputHtmlFileName = "origin.html";
-  String scrapedCsvFileName = "scraped.csv";
-  String parsedJsonFileName = "parsed.json";
+  String scrapedFileName = "scraped_data.txt";
+  String parsedFileName = "parsed_data.txt";
   int debugMode = 0;
   
   /**
@@ -52,7 +53,7 @@ public class FlightWebScraping {
   /**
    * 
    */
-  public void HtmlScraping() {
+  public void HtmlScrapingParsing() {
     System.out.println("running...");
 
 
@@ -82,51 +83,35 @@ public class FlightWebScraping {
         String title = document.title(); // Get title
         System.out.println("Title: " + title); // Print title.
 
-        FileWriter fIn = new FileWriter(inputHtmlFileName);
-        BufferedWriter html = new BufferedWriter(fIn);
+        FileWriter fin = new FileWriter(inputHtmlFileName);
+        BufferedWriter html = new BufferedWriter(fin);
         html.write(document.toString());
-        fIn.close();
-
-        fIn = new FileWriter(scrapedCsvFileName);
-        BufferedWriter csv = new BufferedWriter(fIn);
-        Elements divs = document.select("div.Base-Results-HorizonResult");
-
-        csv.append("rank,price,departure flight duration,departure flight stops,"
-            + "departure details,arrival flight duration,arrival flight stops,"
-            + "arrival details\n");
-
-        for (Element div : divs) {
-          String ariaLabel = div.attr("aria-label");
-          String entry = (ariaLabel + ',' + div.text());
-          String parsedEntry = HtmlParsing(entry);
-
-          csv.append(parsedEntry + "\n");
-        }
-        fIn.close();
-
+        fin.close();
+        
+        HtmlScraping();
         System.out.println("Scraping complete.");
+        
+        HtmlParsing();
+        System.out.println("Parsing complete.");
+
 
       } catch (IOException ioe) {
         System.out.println("Exception: " + ioe);
         // ioe.printStackTrace();
       }
     }
-    else if (debugMode == 2) {
-      File input = new File(scrapedCsvFileName);
-      try {
-        Scanner in = new Scanner(input);
-        in.nextLine();
-        while (in.hasNext()) {
-          String entry = in.nextLine();
-          String parsedEntry = HtmlParsing(entry);
-          System.out.println(parsedEntry);
-        }
-        in.close();
 
-      } catch (FileNotFoundException e) {
-        // TODO Auto-generated catch block
-        System.out.println("File Not Found. Program terminated!");
-      }
+    else if (debugMode == 1) {
+      
+      HtmlScraping();
+      System.out.println("Parsing complete.");
+
+    }
+
+    else if (debugMode == 2) {
+      
+      HtmlParsing();
+      System.out.println("Parsing complete.");
 
     }
   }
@@ -135,9 +120,90 @@ public class FlightWebScraping {
    * 
    * @param fileName
    */
-  public String HtmlParsing(String entry) {
-    entry = entry.replaceAll("Result number |: |from |\\.[ ,]", "|");
-    return entry;
+  public void HtmlScraping() {
+    
+    FileWriter fout;
+    
+    try {
+    
+      fout = new FileWriter(scrapedFileName);
+
+      BufferedWriter scraped = new BufferedWriter(fout);
+
+      Elements divs = document.select("div.Base-Results-HorizonResult");
+
+      for (Element div : divs) {
+        
+        String ariaLabel = div.attr("aria-label");
+        String entry = (ariaLabel + ',' + div.text());
+        scraped.append(entry + "\n");
+        
+      }
+      
+      fout.close();
+
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * 
+   * @param fileName
+   */
+  public void HtmlParsing() {
+    
+    FileReader fin;
+    FileWriter fout;
+    
+    try {
+      
+      fin = new FileReader(scrapedFileName);
+      
+      fout = new FileWriter(parsedFileName);
+      
+      BufferedWriter parsed = new BufferedWriter(fout);
+
+      parsed.append("rank|price|site|leg1|departure flight|departure flight details|"
+          + "stops|departure flight duration|leg2|return flight|return flight details|"
+          + "stops|return flight duration|\n");
+
+      Scanner input = new Scanner(fin);
+      String entry = null;
+      
+      while(input.hasNextLine()) {
+        
+        entry = input.nextLine().replaceAll("Result number |: |from |\\.[ ,]| Go to ", "|");
+        String[] cells = entry.split("\\|");
+        //|2|$1371 |Kiwi.com|Leg 1|Provided by Multiple Airlines
+        //|Departs |Vancouver, BC, Canada - Vancouver Intl on 4/27 at 2:00 am, lands in Beijing, China - Capital on 4/28 at 12:35 pm
+        //|1 stop (TPE)|Total duration|19h 35m|Leg 2|Provided by Multiple Airlines|Departs |Beijing, China - Capital on 5/27 at 9:30 am, lands in Vancouver, BC, Canada - Vancouver Intl on 5/27 at 7:40 pm
+        //|2 stops (CKG, TPE)|Total duration|25h 10m.Operated by EVA Air
+
+        for (int i = 0; i < cells.length ; i++) {
+          if(i != 0 && i != 4 && i != 6 && i != 9 && i != 11 && i != 13 && i != 16 &&
+              i != 17 && i != 18 && i != 19 && i != 20 && i != 21) {
+            parsed.append(cells[i]+"|");
+          }
+        }
+        
+        parsed.append("\n");
+        
+      }
+      
+      input.close();
+      parsed.close();
+      
+    } catch (FileNotFoundException e) {
+      
+      e.printStackTrace();
+      
+    } catch (IOException e) {
+      
+      e.printStackTrace();
+      
+    }
   }
 }
 
