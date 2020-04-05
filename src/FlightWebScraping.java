@@ -1,9 +1,3 @@
-/**
- * cit591 final project
- * team 8
- * by VP, IW, CY
- */
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,20 +12,25 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * Takes url and use JSoup library to start a web session.
- * Scrapes useful flight info and parse to CSV format
- * @author VP, IW, CY
+ * This FlightWebScraping class takes url address to scrape useful 
+ * information and parse them to the wanted format for data processing.
+ * 
+ * @author cit591 Spring 2020 team8
+ *
  */
 public class FlightWebScraping {
   
   String url = null;
   Document document;
-  String inputHtmlFileName = "origin.html";
+  String inputHtmlFileName = "newFlight.html";
   String scrapedFileName = "scraped_data.txt";
   String parsedFileName = "parsed_data.txt";
   int debugMode = 0;
   
   /**
+   * constructor
+   * initialize url and set debug mode default to 0 
+   * if no debugMode argument is passed
    * 
    * @param url
    */
@@ -41,16 +40,27 @@ public class FlightWebScraping {
   }
 
   /**
+   * constructor
+   * initialize url and debug mode 
    * 
    * @param url
+   * @param debugMode
    */
   public FlightWebScraping(String url, int debugMode) {
     this.url = url;
     this.debugMode = debugMode;
+    if (debugMode == 2)
+      //this the file for htmlParsing method testing
+      this.inputHtmlFileName = "origin.html";
   }
 
   
   /**
+   * setup flight url connection using JSoup and stores the flight html file. 
+   * Call htmlScraping method to scrape useful flight info, and 
+   * call htmlParsing method to parse the scraped info into the target data format.
+   * 
+   * flight html file, scraped data, and parsed data are stored in three files.
    * 
    */
   public void HtmlScrapingParsing() {
@@ -75,6 +85,7 @@ public class FlightWebScraping {
         connection.timeout(10 * 1000);
         // Create an html Document object from the given url.
         this.document = connection.get();
+        
         /*
          * user debug String strText =
          * Jsoup.connect("http://www.google.com/").userAgent("Mozilla/5.0") .get() .text();
@@ -82,7 +93,8 @@ public class FlightWebScraping {
          */
         String title = document.title(); // Get title
         System.out.println("Title: " + title); // Print title.
-
+        
+        // store flight html file for debug test
         FileWriter fin = new FileWriter(inputHtmlFileName);
         BufferedWriter html = new BufferedWriter(fin);
         html.write(document.toString());
@@ -101,13 +113,22 @@ public class FlightWebScraping {
       }
     }
 
+    /* html scraping debug mode
+     * this is only executed when debugMode is set to 1, assuming
+     * flight html file is already present, ie normal mode was ran once.
+     */
     else if (debugMode == 1) {
       
       HtmlScraping();
       System.out.println("Parsing complete.");
 
     }
-
+    
+    /*
+     * html parsing debug mode
+     * this is only executed when debugMode is set to 2, assuming
+     * scraped data file is already present, ie normal mode was ran once
+     */
     else if (debugMode == 2) {
       
       HtmlParsing();
@@ -117,8 +138,9 @@ public class FlightWebScraping {
   }
   
   /**
+   * use JSoup Element and Element.select methods to find elements in interest
+   * from the flight html file and store them to the scraped_data.txt.
    * 
-   * @param fileName
    */
   public void HtmlScraping() {
     
@@ -149,8 +171,11 @@ public class FlightWebScraping {
   }
 
   /**
-   * 
-   * @param fileName
+   * From scraped_data.txt, parse each row's data and store them into this format: 
+   * "rank|price|site|leg1|departure flight|departure flight details|
+   * stops|departure flight duration|leg2|return flight|return flight details|
+   * stops|return flight duration|". Every row values are separated by "|" for 
+   * data processing 
    */
   public void HtmlParsing() {
     

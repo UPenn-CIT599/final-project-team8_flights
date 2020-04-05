@@ -1,11 +1,19 @@
-
+/**
+ * This is the runner class for FlightWebScraping. 
+ * It takes flight url info from GUI class and parse it to the target url address. 
+ * A hard-coded url address is used for testing before we integrate all classes.
+ * 
+ * 
+ * @author cit591 Spring 2020 team8
+ *
+ */
 public class FlightWebScrapingRunner {
   
-  //debug mode
-  //0 = no debug
+  //debug mode configuration
+  //0 = normal mode, no debug
   //1 = web scraping debug
   //2 = html parsing debug
-  Integer debugMode = 0;
+  Integer debugMode = 2;
   
   String[] userInput = new String[6];
   String baseUrl = null;
@@ -17,10 +25,14 @@ public class FlightWebScrapingRunner {
   String url = null;
 
   /**
+   * FlightWebScrapingRunner constructor, 
+   * parse input string to correct url address
    * 
-   * @param userInput
+   * @param userInput in comma separated String in this format:
+   * "baseUrl,departureAirport,arrivalAirport,departureDate,
+   * arrivalDate,ranking
    */
-  public FlightWebScrapingRunner(String userInput) {
+  private FlightWebScrapingRunner(String userInput) {
     
     this.userInput = userInput.split(",");
     baseUrl = this.userInput[0];
@@ -35,21 +47,26 @@ public class FlightWebScrapingRunner {
   }
   
   /**
+   * url address getter
    * 
-   * @return
+   * @return parsed url address String
    */
   public String getUrl() {
     return url;
   }
   
   /**
-   * 
+   * Pass url address and debugMode for FlightWebScraping class to run
    */
-  public void run() {
+  private void run() {
     FlightWebScraping flight = new FlightWebScraping(url, debugMode);
     flight.HtmlScrapingParsing();
   }
   
+  /**
+   * main class to run FlightWebScraping class, with url address "hard-coded"
+   * remove this after integration
+   */
   public static void main(String[] args) {
     
     String baseUrl = "https://www.kayak.com/flights/";
