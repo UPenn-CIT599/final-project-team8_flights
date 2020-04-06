@@ -4,7 +4,7 @@
  * and additional constraints such as if the user would prefer only direct
  * flights, or if not the max no of lay-overs, and the maximum budget for the
  * entire trip.
- * This information is then passed to the */
+ * This information is then passed to the web-scraping class*/
 
 import javax.swing.*;
 import java.awt.BorderLayout;
