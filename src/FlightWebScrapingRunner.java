@@ -32,7 +32,7 @@ public class FlightWebScrapingRunner {
    * "baseUrl,departureAirport,arrivalAirport,departureDate,
    * arrivalDate,ranking
    */
-  private FlightWebScrapingRunner(String userInput) {
+  public FlightWebScrapingRunner(String userInput) {
     
     this.userInput = userInput.split(",");
     baseUrl = this.userInput[0];
@@ -54,19 +54,38 @@ public class FlightWebScrapingRunner {
   public String getUrl() {
     return url;
   }
-  
+
+  /**
+   * debugMode getter returns current debugMode;
+   * 0 = normal mode, 1 = web scraping test mode, 2 = html parsing test mode
+   * @return debugMode in Integer
+   */
+  public Integer getDebugMode() {
+    return debugMode;
+  }
+
+  /**
+   * debugMode setter sets current debugMode;
+   * 0 = normal mode, 1 = web scraping test mode, 2 = html parsing test mode
+   * @param debugMode in Integer to set current debug mode
+   */
+  public void setDebugMode(Integer debugMode) {
+    this.debugMode = debugMode;
+  }
+
   /**
    * Pass url address and debugMode for FlightWebScraping class to run
    */
-  private void run() {
+  public void run() {
     FlightWebScraping flight = new FlightWebScraping(url, debugMode);
-    flight.HtmlScrapingParsing();
+    flight.htmlScrapingParsing();
   }
   
   /**
    * main class to run FlightWebScraping class, with url address "hard-coded"
    * remove this after integration
-   */
+   * 
+   
   public static void main(String[] args) {
     
     String baseUrl = "https://www.kayak.com/flights/";
@@ -82,4 +101,5 @@ public class FlightWebScrapingRunner {
     
     newFlight.run();
   }
+  */
 }

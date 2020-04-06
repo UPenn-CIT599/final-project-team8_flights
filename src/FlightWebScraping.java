@@ -23,8 +23,12 @@ public class FlightWebScraping {
   String url = null;
   Document document;
   String inputHtmlFileName = "newFlight.html";
-  String scrapedFileName = "scraped_data.txt";
-  String parsedFileName = "parsed_data.txt";
+  String scrapedFileName = "scrapedData.txt";
+  String parsedFileName = "parsedData.txt";
+  String inputHtmlFileNameTest = "newFlightTest.html";
+  String scrapedFileNameTest = "scrapedDataTest.txt";
+  String parsedFileNameTest = "parsedDataTest.txt";
+
   int debugMode = 0;
   
   /**
@@ -49,9 +53,17 @@ public class FlightWebScraping {
   public FlightWebScraping(String url, int debugMode) {
     this.url = url;
     this.debugMode = debugMode;
+    
+    if (debugMode == 1)
+      //this the file for htmlParsing method testing
+      this.inputHtmlFileName = this.inputHtmlFileNameTest;
+      this.scrapedFileName = this.scrapedFileNameTest;
+    
     if (debugMode == 2)
       //this the file for htmlParsing method testing
-      this.inputHtmlFileName = "origin.html";
+      this.scrapedFileName = this.scrapedFileNameTest;
+      this.parsedFileName = this.parsedFileNameTest;
+
   }
 
   
@@ -63,7 +75,7 @@ public class FlightWebScraping {
    * flight html file, scraped data, and parsed data are stored in three files.
    * 
    */
-  public void HtmlScrapingParsing() {
+  public void htmlScrapingParsing() {
     System.out.println("running...");
 
 
@@ -95,17 +107,13 @@ public class FlightWebScraping {
         System.out.println("Title: " + title); // Print title.
         
         // store flight html file for debug test
-        FileWriter fin = new FileWriter(inputHtmlFileName);
-        BufferedWriter html = new BufferedWriter(fin);
+        FileWriter htmlFile = new FileWriter(inputHtmlFileName);
+        BufferedWriter html = new BufferedWriter(htmlFile);
         html.write(document.toString());
-        fin.close();
+        htmlFile.close();
         
-        HtmlScraping();
-        System.out.println("Scraping complete.");
-        
-        HtmlParsing();
-        System.out.println("Parsing complete.");
-
+        htmlScraping();
+        htmlParsing();
 
       } catch (IOException ioe) {
         System.out.println("Exception: " + ioe);
@@ -119,9 +127,7 @@ public class FlightWebScraping {
      */
     else if (debugMode == 1) {
       
-      HtmlScraping();
-      System.out.println("Parsing complete.");
-
+      htmlScraping();
     }
     
     /*
@@ -131,9 +137,7 @@ public class FlightWebScraping {
      */
     else if (debugMode == 2) {
       
-      HtmlParsing();
-      System.out.println("Parsing complete.");
-
+      htmlParsing();
     }
   }
   
@@ -142,14 +146,17 @@ public class FlightWebScraping {
    * from the flight html file and store them to the scraped_data.txt.
    * 
    */
-  public void HtmlScraping() {
+  public void htmlScraping() {
     
+    File fin;
     FileWriter fout;
     
     try {
-    
+      
+      fin = new File(inputHtmlFileName);
+      Document document = Jsoup.parse(fin, "UTF-8");
+      
       fout = new FileWriter(scrapedFileName);
-
       BufferedWriter scraped = new BufferedWriter(fout);
 
       Elements divs = document.select("div.Base-Results-HorizonResult");
@@ -162,6 +169,7 @@ public class FlightWebScraping {
         
       }
       
+      System.out.println("Scraping complete.");
       fout.close();
 
     } catch (IOException e) {
@@ -177,7 +185,7 @@ public class FlightWebScraping {
    * stops|return flight duration|". Every row values are separated by "|" for 
    * data processing 
    */
-  public void HtmlParsing() {
+  public void htmlParsing() {
     
     FileReader fin;
     FileWriter fout;
@@ -215,7 +223,9 @@ public class FlightWebScraping {
         parsed.append("\n");
         
       }
-      
+
+      System.out.println("Parsing complete.");
+
       input.close();
       parsed.close();
       
