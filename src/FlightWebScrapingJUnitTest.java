@@ -8,9 +8,12 @@ import org.junit.jupiter.api.*;;
 
 
 /**
- * test FlightWebScraping class's two main htmlScraping and htmlParsing methods;
+ * Test FlightWebScraping class's two main htmlScraping and htmlParsing methods;
  * call FlightWebScrapingRunner class, set debug mode to run both methods and 
- * generates the scraped and parsed .txt files for testing.
+ * generates the scraped and parsed .txt files for testing. 
+ * 
+ * First test checks htmlScraping method's top rank and rank 5 flight fare.
+ * Second test checks htmlParsing method's lowest rank flight fare.
  * 
  * WARNING: import java.junit.jupiter.api.* for BeforeAll and Test, 
  * as these are JUnit 5 libraries, this is not compatible with JUnit4
