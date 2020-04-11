@@ -45,13 +45,14 @@ public class FlightWebScraping {
 
   /**
    * constructor
-   * initialize url and debug mode 
+   * initialize url and debug mode. Overloading FlightWebScraping constructor.
    * 
    * @param url
    * @param debugMode
    */
   public FlightWebScraping(String url, int debugMode) {
-    this.url = url;
+    //this.url = url;
+    this(url);
     this.debugMode = debugMode;
     
     if (debugMode == 1)

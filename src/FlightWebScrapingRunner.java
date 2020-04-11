@@ -13,7 +13,7 @@ public class FlightWebScrapingRunner {
   //0 = normal mode, no debug
   //1 = web scraping debug
   //2 = html parsing debug
-  Integer debugMode = 2;
+  Integer debugMode = 0;
   
   String[] userInput = new String[6];
   String baseUrl = null;
@@ -77,7 +77,7 @@ public class FlightWebScrapingRunner {
    * Pass url address and debugMode for FlightWebScraping class to run
    */
   public void run() {
-    FlightWebScraping flight = new FlightWebScraping(url, debugMode);
+    FlightWebScraping flight = new FlightWebScraping(url);
     flight.htmlScrapingParsing();
   }
   

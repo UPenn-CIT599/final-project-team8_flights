@@ -44,6 +44,10 @@ class FlightWebScrapingJUnitTest {
         + departureAirport + "," + arrivalAirport + "," + departureDate + ","
         + arrivalDate + "," + ranking);
     
+    //set debug mode to 0 for scraping from a known flight html file
+    newFlight.setDebugMode(0);
+    newFlight.run();
+
     //set debug mode to 1 for scraping from a known flight html file
     newFlight.setDebugMode(1);
     newFlight.run();
@@ -88,6 +92,13 @@ class FlightWebScrapingJUnitTest {
     }    
   }
 
+  /**
+   * 
+   */
+  public void FlightWebScrapingTestRun() {
+    
+  }
+  
   /**
    * check if number of rows in the scraped data file is 14
    */
