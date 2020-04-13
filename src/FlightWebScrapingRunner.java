@@ -77,7 +77,7 @@ public class FlightWebScrapingRunner {
    * Pass url address and debugMode for FlightWebScraping class to run
    */
   public void run() {
-    FlightWebScraping flight = new FlightWebScraping(url);
+    FlightWebScraping flight = new FlightWebScraping(url, debugMode);
     flight.htmlScrapingParsing();
   }
   

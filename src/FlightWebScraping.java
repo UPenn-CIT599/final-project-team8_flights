@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -39,8 +40,7 @@ public class FlightWebScraping {
    * @param url
    */
   public FlightWebScraping(String url) {
-    this.url = url;
-    this.debugMode = 0;
+    this(url, 0);
   }
 
   /**
@@ -51,8 +51,7 @@ public class FlightWebScraping {
    * @param debugMode
    */
   public FlightWebScraping(String url, int debugMode) {
-    //this.url = url;
-    this(url);
+    this.url = url;
     this.debugMode = debugMode;
     
     if (debugMode == 1)
@@ -77,7 +76,7 @@ public class FlightWebScraping {
    * 
    */
   public void htmlScrapingParsing() {
-    System.out.println("running...");
+    System.out.println("normal mode start.");
 
 
     if (debugMode == 0) {
@@ -96,6 +95,18 @@ public class FlightWebScraping {
         connection.cookie("auth", "token");
         // set timeout to 10 seconds
         connection.timeout(10 * 1000);
+        
+        // add delay for page to load
+        try {
+          
+          TimeUnit.SECONDS.sleep(2);
+          System.out.println("loading page...");
+          TimeUnit.SECONDS.sleep(14);
+          
+        } catch (InterruptedException ie) {
+          Thread.currentThread().interrupt();
+        }
+        
         // Create an html Document object from the given url.
         this.document = connection.get();
         

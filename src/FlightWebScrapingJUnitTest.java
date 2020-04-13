@@ -34,7 +34,7 @@ class FlightWebScrapingJUnitTest {
     
     String baseUrl = "https://www.kayak.com/flights/";
     String departureAirport = "YVR";
-    String arrivalAirport = "PEK";
+    String arrivalAirport = "TPE";
     String departureDate = "2020-04-27";
     String arrivalDate = "2020-05-27";
     String ranking = "price_a";
