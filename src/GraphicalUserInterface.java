@@ -13,6 +13,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.event.*;
+import java.util.Calendar;
 import java.util.Properties;
 
 
@@ -25,13 +26,18 @@ public class GraphicalUserInterface {
 	private String destCity; //destination city
 	private String deptTime; //departure time
 	private String deptdate; //departure date, in format MMDDYYYY
+    private String depDay, depMonth, depYear, retDay, retMonth, retYear;
 	boolean directFlight = false; //initialize as false. True=only recommend direct flights
 	int maxLayovers; //max allowed no of layovers
 	int maxBudget; //max budget for total trip in $
 	
 	//declare other instance variables pertaining to the GUI
-	JFrame frame;
+	JFrame frame, frame2;
 	JPanel p1;
+    JComboBox dep1, dep2, dep3, ret1, ret2, ret3; 
+    JLabel depLabel, retLabel;
+    
+
 
 	
 	/**main driver code for testing the Graphical User Interface Class.
@@ -56,12 +62,127 @@ public class GraphicalUserInterface {
 		 * Add action listeners for other various buttons
 		 */
 		 
+		frame = new JFrame();
+		
+		
+
+		
+		//grab current date - not using this info yet...
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int month = Calendar.getInstance().get(Calendar.MONTH);        
+        int date = Calendar.getInstance().get(Calendar.DATE);
+        System.out.println("Current year is " + year);
+        System.out.println("Current month is " + month);
+        System.out.println("Current date is " + date);
+  
+        //array of strings for dates
+        String s1[] = {"1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th","16th","17th","18th","19th",
+        		"20th","21st","22nd","23rd","24th","25th","26th","27th","28th","29th","30th","31st"};
+        String days28[] = {"1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th","16th","17th","18th","19th",
+        		"20th","21st","22nd","23rd","24th","25th","26th","27th","28th","29th","30th","31st"};
+        String days30[] = {"1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th","16th","17th","18th","19th",
+        		"20th","21st","22nd","23rd","24th","25th","26th","27th","28th","29th","30th","31st"};
+        String days31[] = {"1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th","16th","17th","18th","19th",
+        		"20th","21st","22nd","23rd","24th","25th","26th","27th","28th","29th","30th","31st"};
+        
+        String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+  
+        String years[] = {"2020","2021"};
+        
+        
+        // create checkbox 
+        dep1 = new JComboBox(days31); 
+        dep2 = new JComboBox(months);
+        dep3 = new JComboBox(years);
+        
+        ret1 = new JComboBox(days31); 
+        ret2 = new JComboBox(months);
+        ret3 = new JComboBox(years);
+  
+        // add ItemListener 
+        dep1.addItemListener(null); 
+        dep2.addItemListener(null);
+        dep3.addItemListener(null);
+        
+        ret1.addItemListener(null); 
+        ret2.addItemListener(null);
+        ret3.addItemListener(null);        
+  
+        // create labels 
+        depLabel = new JLabel("Departure Date"); 
+        retLabel = new JLabel("Return Date");
+        //l1 = new JLabel("Jalpaiguri selected"); 
+  
+        // set color of text 
+        //l.setForeground(Color.red); 
+        //l1.setForeground(Color.blue); 
+  
+        // create a new panel 
+        JPanel depPanel = new JPanel();
+        JPanel retPanel = new JPanel();
+  
+        depPanel.add(depLabel); 
+  
+        // add combo-box to panel 
+        depPanel.add(dep2); 
+        depPanel.add(dep1);
+        depPanel.add(dep3);
+  
+        //p1.add(l1); 
+        
+        retPanel.add(retLabel);
+        retPanel.add(ret2);
+        retPanel.add(ret1);
+        retPanel.add(ret3);
+  
+        // add panel to frame 
+        //frame.add(depPanel);
+       // frame.add(retPanel);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		//declaration of JTextField variables
 		JTextField tfDeparture, tfDestination, tfResult;
 		
 		//create new instances of JFrame, JButton, JPanel, and JTextFields
-		frame = new JFrame();
+		//frame = new JFrame();
+		//frame2 = new JFrame();
+		
 		JButton but1 = new JButton("GET ME FLIGHTS");
 		p1 = new JPanel();
 		p1.setLayout(new GridLayout(5,5));
@@ -122,12 +243,115 @@ public class GraphicalUserInterface {
 		    }
 		});
 		
+		dep1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                // Get the source of the component, which is our combo
+                // box.
+                JComboBox dep1 = (JComboBox) event.getSource();
+
+                // Print the selected items and the action command.
+                depDay = dep1.getSelectedItem().toString();
+                System.out.println("Dep day  = " + depDay);
+            }
+		});
+		
+		dep2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                // Get the source of the component, which is our combo
+                // box.
+                JComboBox dep2 = (JComboBox) event.getSource();
+
+                // Print the selected items and the action command.
+                depMonth = dep2.getSelectedItem().toString();
+                System.out.println("Dep month  = " + depMonth);
+            }
+		});
+		
+		dep3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                // Get the source of the component, which is our combo
+                // box.
+                JComboBox dep3 = (JComboBox) event.getSource();
+
+                // Print the selected items and the action command.
+                depYear = dep3.getSelectedItem().toString();
+                System.out.println("Dep year  = " + depYear);
+            }
+		});
+		
+		ret1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                // Get the source of the component, which is our combo
+                // box.
+                JComboBox ret1 = (JComboBox) event.getSource();
+
+                // Print the selected items and the action command.
+                retDay = ret1.getSelectedItem().toString();
+                System.out.println("Ret day  = " + retDay);
+            }
+		});
+		
+		ret2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                // Get the source of the component, which is our combo
+                // box.
+                JComboBox ret2 = (JComboBox) event.getSource();
+
+                // Print the selected items and the action command.
+                retMonth = ret2.getSelectedItem().toString();
+                System.out.println("Ret month  = " + retMonth);
+                
+                
+                /*
+                if(retMonth.equals("February")){
+                	
+                    //ret1.removeAllItems();
+                    for(int i=1;i<5;i++) {
+                    	ret1.removeItemAt(i);
+                    }
+                    
+                    //ret1.removeAllItems();
+                    for(int i=0;i<5;i++) {
+                    	ret1.removeItemAt(i);
+                    }
+                    
+                	ret1.addItem("1st");
+                	//ret1.removeItem("29th");
+                	//ret1.removeItem("30th");
+                	//ret1.removeItem("31st");
+                }
+                //ret1.addItem("hi");
+                
+                */
+            }
+		});
+		
+		ret3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                // Get the source of the component, which is our combo
+                // box.
+                JComboBox ret3 = (JComboBox) event.getSource();
+
+                // Print the selected items and the action command.
+                retYear = dep3.getSelectedItem().toString();
+                System.out.println("Ret year  = " + retYear);
+            }
+		});
+ 
+		
 		//Set the layout parameters of the GUI window
 		frame.setLayout(new BorderLayout());
-		frame.setSize(800, 400);
+		frame.setSize(332, 250);
 		frame.setVisible(true); //actually displays GUI
+		
+		frame.add(depPanel, BorderLayout.NORTH);
+		frame.add(retPanel, BorderLayout.EAST);
+		
 		frame.add(p1, BorderLayout.SOUTH);
 	}
+	
+
+	
 	
 	/**Determines if the inputs from the user are valid or not. 
 	 * Checks the instance variables of the GraphicalUserInterface class
