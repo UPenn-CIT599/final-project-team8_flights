@@ -8,8 +8,8 @@ import java.util.HashMap;
  */
 public class Recommender {
 	ArrayList<Flight> flightList = new ArrayList<Flight>();
-	GraphicalUserInterface gui = new GraphicalUserInterface(); // create a class instance to get the budget
-
+	ArrayList<Integer> numOfLayover = new ArrayList<Integer>();
+	
 	public Recommender(ArrayList<Flight> flightList) {
 		this.flightList = flightList;
 	}
@@ -18,13 +18,11 @@ public class Recommender {
 	 * and flights with more layover than preferred
 	 * @param priceLimit
 	 * @param layoverLimit
-	 * @param topCnt
-	 * @return
+	 * @return ArrayList of Flightlist
 	 */
-	public ArrayList<Flight> getRankedFlights(int priceLimit, int layoverLimit) {
-		int topCnt = 5;
+	public ArrayList<Flight> getFlightDetails(int priceLimit, int layoverLimit) {
+		int topCnt = 5;//fixed number of flights details (MVP restriction)
 		ArrayList<Flight> tmpFlightList = new ArrayList<Flight>();
-		ArrayList<Integer> numOfLayover = new ArrayList<Integer>();//TODO add flight number
 		for (Flight f : this.flightList) {
 			if(tmpFlightList.size() >= topCnt) {
 				break;
@@ -33,6 +31,7 @@ public class Recommender {
 				// Ensure that the flight does not have more layover than given number
 				if (f.getNumberLayover() <= layoverLimit) {
 					tmpFlightList.add(f);
+					numOfLayover.add(f.getNumberLayover());
 				}
 
 			}
@@ -40,5 +39,11 @@ public class Recommender {
 		}
 		return tmpFlightList;
 	}
+//	public ArrayList<String> getFlightNum(){
+//		dataReader read = new dataReader ();
+//		ArrayList<Flight> flightList = read.readCSV();
+//		Recommender rec = new Recommender (flightList);
+//		ArrayList<Flight> rankedFlightList = rec.getFlightDetails(gui.maxBudget,gui.maxLayovers);
+//	}
 
 }

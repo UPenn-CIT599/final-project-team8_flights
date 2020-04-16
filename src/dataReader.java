@@ -26,8 +26,12 @@ public class dataReader {
 				String[] layover = dataLine[8].split(" ");
 				int numberLayover = Integer.parseInt(layover[0]);
 				String flightDetail = dataLine[7];
-				String duration = dataLine[10]; // data example: 27h 25m
-				Flight flight = new Flight(flightPrice,numberLayover,flightDetail,duration);
+				String duration = dataLine[10]; 
+				String flyNum1 = dataLine[1]; //TODO update the data location based on Chris's output
+				String flyNum2 = dataLine[1]; //TODO update the data location based on Chris's output
+				String flyNum3 = dataLine[1]; //TODO update the data location based on Chris's output
+				String flyNum4 = dataLine[1];//TODO update the data location based on Chris's output
+				Flight flight = new Flight(flightPrice,numberLayover,flightDetail,duration,flyNum1,flyNum2,flyNum3,flyNum4);
 				flightList.add(flight);
 				
 			}
