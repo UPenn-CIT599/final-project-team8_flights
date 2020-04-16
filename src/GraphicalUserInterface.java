@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.event.*;
@@ -24,28 +25,31 @@ public class GraphicalUserInterface {
 	 */
 	private String deptCity; //departure city
 	private String destCity; //destination city
-	private String deptTime; //departure time
-	private String deptdate; //departure date, in format MMDDYYYY
-    private String depDay, depMonth, depYear, retDay, retMonth, retYear;
+    private String depDay, depMonth, retDay, retMonth;
+    private String depYear;//initialize dep and ret years to 2020
+    private String retYear = "2020";
 	boolean directFlight = false; //initialize as false. True=only recommend direct flights
-	int maxLayovers; //max allowed no of layovers
-	int maxBudget; //max budget for total trip in $
+	String maxLayovers = "3"; //max allowed no of layovers
+	String maxBudget = "5000"; //max budget for total trip in $
+	
+	boolean readyToSearch = false; //boolean to determine whether user is ready to search for flights. Set to true when user clicks "go"
 	
 	//declare other instance variables pertaining to the GUI
 	JFrame frame, frame2;
-	JPanel p1;
-    JComboBox dep1, dep2, dep3, ret1, ret2, ret3; 
+	JPanel p1,p2;
+    JComboBox dep1, dep2, dep3, ret1, ret2, ret3, layoverList; 
     JLabel depLabel, retLabel;
     
-
 
 	
 	/**main driver code for testing the Graphical User Interface Class.
 	 * This will eventually be run by the Runner Class*/
+    /*
 	public static void main(String args[]) {
 		GraphicalUserInterface gui = new GraphicalUserInterface();
 		gui.createGui();
 	}
+	*/
 	
 	
 	
@@ -89,15 +93,27 @@ public class GraphicalUserInterface {
   
         String years[] = {"2020","2021"};
         
+
+        
+        
+        
         
         // create checkbox 
         dep1 = new JComboBox(days31); 
         dep2 = new JComboBox(months);
         dep3 = new JComboBox(years);
         
+        dep1.setSelectedIndex(date-1);
+        dep2.setSelectedIndex(month);
+        dep3.setSelectedIndex(year-2020);
+        
         ret1 = new JComboBox(days31); 
         ret2 = new JComboBox(months);
         ret3 = new JComboBox(years);
+        
+        ret1.setSelectedIndex(date-1);
+        ret2.setSelectedIndex(month+1);
+        ret3.setSelectedIndex(year-2020);
   
         // add ItemListener 
         dep1.addItemListener(null); 
@@ -183,7 +199,7 @@ public class GraphicalUserInterface {
 		//frame = new JFrame();
 		//frame2 = new JFrame();
 		
-		JButton but1 = new JButton("GET ME FLIGHTS");
+		JButton searchButton = new JButton("SEARCH FOR FLIGHTS");
 		p1 = new JPanel();
 		p1.setLayout(new GridLayout(5,5));
 	    tfDeparture =new JTextField(20); //text-box for retrieving the departure city
@@ -200,28 +216,72 @@ public class GraphicalUserInterface {
 	    p1.add(new JLabel("Enter destination:"));
 	    p1.add(tfDestination);
 	    JCheckBox checkbox = new JCheckBox("Direct flights only");
-	    p1.add(checkbox);
-		p1.add(but1);
 		
 		checkbox.addActionListener(null);
 		
-	    final TextField tf=new TextField();  
-	    tf.setBounds(50,50, 150,20);
-	    p1.add(tf);
+	    //final TextField tf=new TextField();  
+	    //tf.setBounds(50,50, 150,20);
+	    //p1.add(tf);
+		
+		TextField tfMaxBudget = new TextField();
+		
+		
+		//p2 = new JPanel();
+		String layover[] = {"1","2","3"};
+		layoverList = new JComboBox(layover);
+		//layoverList.setPreferredSize(new Dimension(200,200));
+	    p1.add(new JLabel("Max no of layovers"));
+		p1.add(layoverList);
+	    //p1.add(new JLabel("		    "));
+	    p1.add(new JLabel("Maximum budget (USD$)"));
+	    p1.add(tfMaxBudget);
+	    p1.add(checkbox);
+		p1.add(searchButton);
+		//String message = "hello";
+		//JLabel messageLabel = new JLabel(message);
+		//p1.add(messageLabel);
+	    //p1.add(new JLabel("		    "));
 	    
+		
+		
+ 
+		
+		//Set the layout parameters of the GUI window
+		frame.setLayout(new BorderLayout());
+		frame.setSize(332, 250);
+		frame.setVisible(true); //actually displays GUI
+		
+		frame.add(depPanel, BorderLayout.NORTH);
+		frame.add(retPanel, BorderLayout.EAST);
+		
+		frame.add(p1, BorderLayout.SOUTH);
+		//frame.add(p2, BorderLayout.SOUTH);
+		
+		
+		
+		
+		
 		
 	    /**Action listener for textbox retrives the text entered by the user
 	     * not the user prefers direct flights only
 	     */
-		but1.addActionListener(new ActionListener() {
+		searchButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e){
 		        deptCity = tfDeparture.getText();  
 		        destCity = tfDestination.getText();
+		        maxBudget = tfMaxBudget.getText();
+		        
+		        System.out.println("max budget for trip equals " + maxBudget);
+		        
+		        /*
 		        if(directFlight) {
 	            tf.setText("Getting direct flights from " + deptCity + " to " + destCity);  
 		        } else {
 		            tf.setText("Getting flights from " + deptCity + " to " + destCity); 
-		        }        
+		        }
+		        readyToSearch = true;
+		        System.out.println("ready to search!");
+		        */
 	    }
 		});
 
@@ -248,10 +308,11 @@ public class GraphicalUserInterface {
                 // Get the source of the component, which is our combo
                 // box.
                 JComboBox dep1 = (JComboBox) event.getSource();
-
                 // Print the selected items and the action command.
                 depDay = dep1.getSelectedItem().toString();
                 System.out.println("Dep day  = " + depDay);
+                
+                System.out.println("Dep day for Chris = " + depDay.substring(0,depDay.length()-2));
             }
 		});
 		
@@ -264,6 +325,39 @@ public class GraphicalUserInterface {
                 // Print the selected items and the action command.
                 depMonth = dep2.getSelectedItem().toString();
                 System.out.println("Dep month  = " + depMonth);
+                
+                if(depMonth.equals("February")){
+                	dep1.removeItem("29th");
+                	dep1.removeItem("30th");
+                	dep1.removeItem("31st");
+                }
+
+	                if(depMonth.equals("January") || depMonth.equals("March") || depMonth.equals("May") || depMonth.equals("July")
+	                		|| depMonth.equals("August") || depMonth.equals("October") || depMonth.equals("December")) {
+	                	if(dep1.getItemCount()<29) {
+	                		dep1.addItem("29th");
+	                	}
+	                	if(dep1.getItemCount()<30) {
+	                		dep1.addItem("30th");
+	                	}
+	                	if(dep1.getItemCount()<31) {
+	                		dep1.addItem("31st");
+	                	}
+	                }
+	                
+	                if(depMonth.equals("April") || depMonth.equals("June") || depMonth.equals("September") || depMonth.equals("November")) {
+	                	if(dep1.getItemCount()<29) {
+	                		dep1.addItem("29th");
+	                	}
+	                	if(dep1.getItemCount()<30) {
+	                		dep1.addItem("30th");
+	                	}
+	                	if(dep1.getItemCount()>30) {
+	                		dep1.removeItem("31st");
+	                	}
+	                }
+                
+                
             }
 		});
 		
@@ -301,29 +395,39 @@ public class GraphicalUserInterface {
                 retMonth = ret2.getSelectedItem().toString();
                 System.out.println("Ret month  = " + retMonth);
                 
-                
-                /*
+
                 if(retMonth.equals("February")){
-                	
-                    //ret1.removeAllItems();
-                    for(int i=1;i<5;i++) {
-                    	ret1.removeItemAt(i);
-                    }
-                    
-                    //ret1.removeAllItems();
-                    for(int i=0;i<5;i++) {
-                    	ret1.removeItemAt(i);
-                    }
-                    
-                	ret1.addItem("1st");
-                	//ret1.removeItem("29th");
-                	//ret1.removeItem("30th");
-                	//ret1.removeItem("31st");
+                	ret1.removeItem("29th");
+                	ret1.removeItem("30th");
+                	ret1.removeItem("31st");
                 }
-                //ret1.addItem("hi");
-                
-                */
-            }
+
+	                if(retMonth.equals("January") || retMonth.equals("March") || retMonth.equals("May") || retMonth.equals("July")
+	                		|| retMonth.equals("August") || retMonth.equals("October") || retMonth.equals("December")) {
+	                	if(ret1.getItemCount()<29) {
+	                		ret1.addItem("29th");
+	                	}
+	                	if(ret1.getItemCount()<30) {
+	                		ret1.addItem("30th");
+	                	}
+	                	if(ret1.getItemCount()<31) {
+	                		ret1.addItem("31st");
+	                	}
+	                }
+	                
+	                if(retMonth.equals("April") || retMonth.equals("June") || retMonth.equals("September") || retMonth.equals("November")) {
+	                	if(ret1.getItemCount()<29) {
+	                		ret1.addItem("29th");
+	                	}
+	                	if(ret1.getItemCount()<30) {
+	                		ret1.addItem("30th");
+	                	}
+	                	if(ret1.getItemCount()>30) {
+	                		ret1.removeItem("31st");
+	                	}
+	                }
+            
+            }    
 		});
 		
 		ret3.addActionListener(new ActionListener() {
@@ -333,21 +437,35 @@ public class GraphicalUserInterface {
                 JComboBox ret3 = (JComboBox) event.getSource();
 
                 // Print the selected items and the action command.
-                retYear = dep3.getSelectedItem().toString();
+                retYear = ret3.getSelectedItem().toString();
                 System.out.println("Ret year  = " + retYear);
+                
+            	if(Integer.parseInt(retYear) %4==0 && retMonth.equals("February")) {
+            		if(ret1.getItemAt(29) == null){
+            			ret1.addItem("29th");
+            			//ret2.getItemAt(2);
+            		} 
+            	}
+            	
+            	if(retYear.equals("2021") && retMonth.contentEquals("February")){
+            		ret1.removeItem("29th");
+            	}
+                
             }
 		});
- 
 		
-		//Set the layout parameters of the GUI window
-		frame.setLayout(new BorderLayout());
-		frame.setSize(332, 250);
-		frame.setVisible(true); //actually displays GUI
 		
-		frame.add(depPanel, BorderLayout.NORTH);
-		frame.add(retPanel, BorderLayout.EAST);
-		
-		frame.add(p1, BorderLayout.SOUTH);
+		layoverList.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                // Get the source of the component, which is our combo
+                // box.
+                JComboBox layoverList = (JComboBox) event.getSource();
+                // Print the selected items and the action command.
+                maxLayovers = layoverList.getSelectedItem().toString();
+                System.out.println("Max no of layover selected = " + maxLayovers);
+            }
+		});
+
 	}
 	
 
@@ -382,24 +500,6 @@ public class GraphicalUserInterface {
 
 
 	/**
-	 * @return the deptTime
-	 */
-	public String getDeptTime() {
-		return deptTime;
-	}
-
-
-
-	/**
-	 * @return the deptdate
-	 */
-	public String getDeptdate() {
-		return deptdate;
-	}
-
-
-
-	/**
 	 * @return the directFlight
 	 */
 	public boolean isDirectFlight() {
@@ -411,7 +511,7 @@ public class GraphicalUserInterface {
 	/**
 	 * @return the maxLayovers
 	 */
-	public int getMaxLayovers() {
+	public String getMaxLayovers() {
 		return maxLayovers;
 	}
 
@@ -420,10 +520,160 @@ public class GraphicalUserInterface {
 	/**
 	 * @return the maxBudget
 	 */
-	public int getMaxBudget() {
+	public String getMaxBudget() {
 		return maxBudget;
 	}
+
+
+
+	/**
+	 * @return the depDay
+	 */
+	public String getDepDay() {
+		return depDay.substring(0,depDay.length()-2);
+	}
+
+
+
+	/**
+	 * @param depDay the depDay to set
+	 */
+	public void setDepDay(String depDay) {
+		this.depDay = depDay;
+	}
+
+
+
+	/**
+	 * @return the depMonth
+	 */
+	public String getDepMonth() {
+		return depMonth;
+	}
+
+
+
+	/**
+	 * @param depMonth the depMonth to set
+	 */
+	public void setDepMonth(String depMonth) {
+		this.depMonth = depMonth;
+	}
+
+
+
+	/**
+	 * @return the retDay
+	 */
+	public String getRetDay() {
+		return retDay.substring(0,retDay.length()-2);
+	}
+
+
+
+	/**
+	 * @param retDay the retDay to set
+	 */
+	public void setRetDay(String retDay) {
+		this.retDay = retDay;
+	}
+
+
+
+	/**
+	 * @return the retMonth
+	 */
+	public String getRetMonth() {
+		return retMonth;
+	}
+
+
+
+	/**
+	 * @param retMonth the retMonth to set
+	 */
+	public void setRetMonth(String retMonth) {
+		this.retMonth = retMonth;
+	}
+
+
+
+	/**
+	 * @return the depYear
+	 */
+	public String getDepYear() {
+		return depYear;
+	}
+
+
+
+	/**
+	 * @param depYear the depYear to set
+	 */
+	public void setDepYear(String depYear) {
+		this.depYear = depYear;
+	}
+
+
+
+	/**
+	 * @return the retYear
+	 */
+	public String getRetYear() {
+		return retYear;
+	}
+
+
+
+	/**
+	 * @param retYear the retYear to set
+	 */
+	public void setRetYear(String retYear) {
+		this.retYear = retYear;
+	}
+
+
+
+	/**
+	 * @param deptCity the deptCity to set
+	 */
+	public void setDeptCity(String deptCity) {
+		this.deptCity = deptCity;
+	}
+
+
+
+	/**
+	 * @param destCity the destCity to set
+	 */
+	public void setDestCity(String destCity) {
+		this.destCity = destCity;
+	}
+
+
+
+	/**
+	 * @param directFlight the directFlight to set
+	 */
+	public void setDirectFlight(boolean directFlight) {
+		this.directFlight = directFlight;
+	}
 	
+	/**
+	 * @return the readyToSearch
+	 */
+	public boolean isReadyToSearch() {
+		return readyToSearch;
+	}
+
+
+
+	/**
+	 * @param readyToSearch the readyToSearch to set
+	 */
+	public void setReadyToSearch(boolean readyToSearch) {
+		this.readyToSearch = readyToSearch;
+	}
 	
 }
 
