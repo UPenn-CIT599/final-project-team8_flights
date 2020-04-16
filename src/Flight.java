@@ -1,5 +1,7 @@
-/*
+/**
  * represents each flight status that is 1 row from the csv file read in dataReader class
+ * @author issacwon
+ *
  */
 public class Flight {
 	private int flightPrice;
