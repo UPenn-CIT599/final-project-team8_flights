@@ -1,0 +1,26 @@
+GUI:
+  - fix day getter (truncate "th" etc outside of getter function)
+  - clean up airport code text file (main airports only)
+  - set some deafult values for everything so it doesn't break if not selected
+
+
+Web-scraper:
+   - fix ?/- splitter 
+
+Report:
+ - Account for "direct flight" boolean. Might need to call this through main. 
+ - add a title/header (e.g. Here are the recommended flights meeting your criteria..)
+ - For each flight, list 1) details 2)flight number 3) booking link
+
+
+
+Readme:
+  - required libraries, etc.
+  - a walkthrough of the actual code 
+	- How GUI works (how to use, restrictions (correct city spelling, no dates in the past allowed, etc)
+	- Report that user can read to find flights and links to book
+
+
+Tidy-up:
+	- Comment and Indent Code
+	- JAVADOCS!! 
