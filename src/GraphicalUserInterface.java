@@ -26,11 +26,13 @@ public class GraphicalUserInterface {
 	private String deptCity; //departure city
 	private String destCity; //destination city
     private String depDay, depMonth, retDay, retMonth;
-    private String depYear;//initialize dep and ret years to 2020
+    private String depYear = "2020";
     private String retYear = "2020";
 	boolean directFlight = false; //initialize as false. True=only recommend direct flights
 	String maxLayovers = "3"; //max allowed no of layovers
 	String maxBudget = "5000"; //max budget for total trip in $
+    String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
 	
 	boolean readyToSearch = false; //boolean to determine whether user is ready to search for flights. Set to true when user clicks "go"
 	
@@ -89,7 +91,6 @@ public class GraphicalUserInterface {
         String days31[] = {"1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th","16th","17th","18th","19th",
         		"20th","21st","22nd","23rd","24th","25th","26th","27th","28th","29th","30th","31st"};
         
-        String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
   
         String years[] = {"2020","2021"};
         
@@ -279,9 +280,12 @@ public class GraphicalUserInterface {
 		        } else {
 		            tf.setText("Getting flights from " + deptCity + " to " + destCity); 
 		        }
-		        readyToSearch = true;
-		        System.out.println("ready to search!");
 		        */
+		        
+		        
+		        readyToSearch = true;
+		        //System.out.println("ready to search!");
+		        
 	    }
 		});
 
@@ -530,7 +534,12 @@ public class GraphicalUserInterface {
 	 * @return the depDay
 	 */
 	public String getDepDay() {
-		return depDay.substring(0,depDay.length()-2);
+		depDay = depDay.substring(0,depDay.length()-2);
+		
+		if(depDay.length()==1) {
+			depDay = "0" + depDay;
+		}
+		return depDay;
 	}
 
 
@@ -548,6 +557,16 @@ public class GraphicalUserInterface {
 	 * @return the depMonth
 	 */
 	public String getDepMonth() {
+		
+		for(int i=1;i<=12;i++) {
+			if(depMonth.equals(months[i-1])) {
+				depMonth=Integer.toString(i);
+			}
+		}
+		
+		if(depMonth.length()==1) {
+			depMonth = "0" + depMonth;
+		}
 		return depMonth;
 	}
 
@@ -566,7 +585,12 @@ public class GraphicalUserInterface {
 	 * @return the retDay
 	 */
 	public String getRetDay() {
-		return retDay.substring(0,retDay.length()-2);
+		retDay=retDay.substring(0,retDay.length()-2);
+		
+		if(retDay.length()==1) {
+			retDay = "0" + retDay;
+		}
+		return retDay;
 	}
 
 
@@ -584,6 +608,14 @@ public class GraphicalUserInterface {
 	 * @return the retMonth
 	 */
 	public String getRetMonth() {
+		for(int i=1;i<=12;i++) {
+			if(retMonth.equals(months[i-1])) {
+				retMonth=Integer.toString(i);
+			}
+		}
+		if(retMonth.length()==1) {
+			retMonth = "0" + retMonth;
+		}
 		return retMonth;
 	}
 

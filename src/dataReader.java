@@ -13,25 +13,21 @@ public class dataReader {
 	 * and parse the data and convert to the appropriate variable format 
 	 * @return ArrayList flight
 	 */
-	public static ArrayList<Flight> readCSV(){
+	public ArrayList<Flight> readCSV(){
 		ArrayList<Flight> flightList = new ArrayList<Flight>();
-		File flightData = new File ("scraped_temp.csv");//TODO add the file name
+		File flightData = new File ("ScrapedFlightData.txt");
 		try {
 			Scanner scan = new Scanner(flightData);
 			//scan.nextLine();//skip the first line
 			while(scan.hasNextLine()) {
 				String line = scan.nextLine();
 				String[] dataLine = line.split("\\|");
-				int flightPrice = Integer.parseInt(dataLine[2].replace("$","").trim());
-				String[] layover = dataLine[8].split(" ");
-				int numberLayover = Integer.parseInt(layover[0]);
-				String flightDetail = dataLine[7];
-				String duration = dataLine[10]; 
-				String flyNum1 = dataLine[1]; //TODO update the data location based on Chris's output
-				String flyNum2 = dataLine[1]; //TODO update the data location based on Chris's output
-				String flyNum3 = dataLine[1]; //TODO update the data location based on Chris's output
-				String flyNum4 = dataLine[1];//TODO update the data location based on Chris's output
-				Flight flight = new Flight(flightPrice,numberLayover,flightDetail,duration,flyNum1,flyNum2,flyNum3,flyNum4);
+				int flightPrice = Integer.parseInt(dataLine[1].replace("$","").trim());//2
+				String[] layover = dataLine[7].split(" ");
+				//int numberLayover = Integer.parseInt(layover[0]);
+				String flightDetail = dataLine[20];
+				String flyNum = dataLine[4]; //TODO update the data location based on Chris's output
+				Flight flight = new Flight(flightPrice,2,flightDetail,flyNum);
 				flightList.add(flight);
 				
 			}

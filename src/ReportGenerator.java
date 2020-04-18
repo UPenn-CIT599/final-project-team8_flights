@@ -11,38 +11,25 @@ public class ReportGenerator {
 
 	/**
 	 * Generates a report with the top recommended flights based on their price
-	 * For those top flights, this will present top cheapest flight details and the fligth numbers
+	 * For those top flights, this will present top cheapest flight details and the flight numbers
 	 */
-	public void generateReport() {
+	public void generateReport(int priceLimit, int layoverLimit, boolean directFlight) {
 		/*
 		 * Write method that retrieves information from the data processing class and
 		 * generates a text report with recommended flight details
 		 * gui.getMaxBudget(),gui.getMaxLayovers()
 		 */
-		GraphicalUserInterface gui = new GraphicalUserInterface();
+		
+		if(directFlight) {
+			layoverLimit=0;
+		}
+		
 		File out = new File("report.txt");
 		dataReader read = new dataReader();
 		ArrayList<Flight> flightList = read.readCSV();
 		Recommender rec = new Recommender(flightList);
-		ArrayList<Flight> rankedFlightList = rec.getFlightDetails(1500, 3);
-		ArrayList<Integer> layover = rec.numOfLayover;
-		ArrayList<String> flightNumList = new ArrayList<String>();
-		for (Flight flight : rankedFlightList) {
-			String flightNum = "";
-			for (Integer i : layover) {
-				if (i == 0) {
-					flightNum = flight.getFlightNum1();
+		ArrayList<Flight> rankedFlightList = rec.getFlightDetails(priceLimit, layoverLimit);
 
-				} else if (i == 1) {
-					flightNum = flight.getFlightNum1() + "," + flight.getFlightNum2();
-				} else if (i == 2) {
-					flightNum = flight.getFlightNum1() + "," + flight.getFlightNum2() + "," + flight.getFlightNum3();
-				} else if (i == 3) {
-					flightNum = flight.getFlightNum1() + "," + flight.getFlightNum2() + "," + flight.getFlightNum3();
-				}
-			}
-			flightNumList.add(flightNum);
-		}
 		try (PrintWriter write = new PrintWriter(out)) {
 			write.println("Top 5 cheapest flights");
 			write.println();
@@ -50,9 +37,10 @@ public class ReportGenerator {
 			for (Flight flight : rankedFlightList) {
 				write.println(flight.getFlightDetail());
 			}
+			write.println();
 			write.println("Flight numbers: ");
-			for (String flyNum : flightNumList) {
-				write.println(flyNum);
+			for (Flight fly: rankedFlightList) {
+				write.println(fly.getFlightNum1());
 			}
 			System.out.println("Your report is created. Search for 'report.txt'");
 		} catch (IOException e) {
@@ -61,10 +49,10 @@ public class ReportGenerator {
 		}
 	}
 
-	public static void main(String[] args) {
-		ReportGenerator r = new ReportGenerator();
-		r.generateReport();
-	}
+//	public static void main(String[] args) {
+//		ReportGenerator r = new ReportGenerator();
+//		r.generateReport();
+//	}
 
 	/**
 	 * Draws recommended flight paths on a map of the world, and writes to an image
