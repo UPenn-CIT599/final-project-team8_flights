@@ -39,15 +39,14 @@ public class ActiveFlightWebScraping {
 
   ArrayList<Itinerary> itinerary = new ArrayList<>();
 
-  String url = null;
-  Document document;
-  String inputHtmlFileName = "KayakFlightInfo.html";
-  String scrapedFileName = "ScrapedFlightData.txt";
-  String baseUrl = "https://www.kayak.com/flights/";
-  boolean scrapingFileWritten = false;
-
-
-int debugMode = 0;
+  private String url = null;
+  private Document document;
+  private String inputHtmlFileName = "KayakFlightInfo.html";
+  private String scrapedFileName = "ScrapedFlightData.txt";
+  private String baseUrl = "https://www.kayak.com/flights/";
+  private boolean scrapingFileWritten = false;
+  private int maxPageLoad = 2; //number of pages to load from kayak query
+  private int debugMode = 0;
 
   /**
    * 
@@ -135,8 +134,6 @@ int debugMode = 0;
    * 
    */
   public void ActiveWebHtmlLoading() {
-
-    int maxPageLoad = 1; //number of pages to load from
 
     ChromeOptions ops = new ChromeOptions();
     //ops.addArguments("--user-agent=Mozilla/5.0 (Linux; Android 6.0; HTC One M9 Build/MRA58K) "
@@ -307,10 +304,14 @@ int debugMode = 0;
         
         Elements resultFlyOutAirport =
             result.select("li.flight.with-gutter div.container div.section.duration div.bottom");
-        flyOut.setDepartureAirport(resultFlyOutAirport.text().split(" ‐ ")[0]);
-         System.out.print("\n departure airport is " + flyOut.getDepartureAirport()+"\n");
-        //flyOut.setArrivalAirport(resultFlyOutAirport.text().split(" ‐ ")[1]);
-         //System.out.print("arrival airport is " + flyOut.getArrivalAirport()+"\n");
+        String flyOutAirport = resultFlyOutAirport.text();
+        System.out.println(flyOutAirport);
+        // scraped string YVR - SFO
+        // parse first three characters and the last three characters for airportCode
+        flyOut.setDepartureAirport(flyOutAirport.substring(0,3));
+        System.out.print("Dept airport for flying out is " + flyOut.getDepartureAirport()+"\n");
+        flyOut.setArrivalAirport(flyOutAirport.substring(flyOutAirport.length() - 3));
+        System.out.print("arrival airport for flying out is " + flyOut.getArrivalAirport()+"\n");
 
         Elements resultFlyOutDetails =
             result.select("div.detailsWrapper div.section-content div.content-card");// div.segment-row
@@ -350,10 +351,14 @@ int debugMode = 0;
         //maybe try to parse with string index 0-2 and 6-8 or whatever
         Elements resultFlyInAirport =
             result.select("li.flight div.container div.section.duration div.bottom");
-        flyIn.setDepartureAirport(resultFlyInAirport.get(1).text().split(" ‐ ")[0]);
-         System.out.print("\n Dept airport for flying home is" + flyIn.getDepartureAirport()+"\n");
-        //flyIn.setArrivalAirport(resultFlyInAirport.get(1).text().split(" ‐ ")[1]);
-        //System.out.print("arrival airport for flying home is" + flyIn.getArrivalAirport());
+        String flyInAirport = resultFlyInAirport.text();
+        System.out.println(flyInAirport);
+        // scraped string YVR - SFO
+        // parse first three characters and the last three characters for airportCode
+        flyIn.setDepartureAirport(flyInAirport.substring(0,3));
+        System.out.print("departure airport for flying home is " + flyIn.getDepartureAirport()+"\n");
+        flyIn.setArrivalAirport(flyInAirport.substring(flyInAirport.length()-3));
+        System.out.print("arrival airport for flying home is " + flyIn.getArrivalAirport()+"\n");
 
         Elements resultFlyInDetails =
             result.select("div.detailsWrapper div.section-content div.content-card");// div.segment-row
