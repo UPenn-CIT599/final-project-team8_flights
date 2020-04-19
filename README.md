@@ -1,22 +1,19 @@
 # final-project-team8_flights
 
 ## Prerequisites
-add external libraries
+The required libraries are included in the repo, and Eclipse project build path is also set up accordingly (.classpath).
+
 * JSoup
 * Selenium-java client
-add chrome driver
+
+This code is set up to use Chrome driver for active scraping. Chromedriver can be found in the ./chromedriver_download path and user will require to unzip the chromedriver (chose right one per OS system) and placed it in the project directory.
 * Google Chrome Driver
-WebDriver provides binding for different software languages. Since we are using the Java environment, we need to download and include Java bindings in the build path. We will use chrome driver in this project to be used with Selenium to drive chrome.
 
 ## Main Classes:
 * GUI Class
-* FlightWebScraping Class
-* DataProcessing Class
-* ReportGenerating Class
+* ActiveFlightWebScraping Class
+* ReportGenerator Class
+* Runner Class
 
-
-## Required libraries:
-* JSoup lib - version 1.13.1
-download link: https://jsoup.org/packages/jsoup-1.13.1.jar
-* JSoup lib javadoc
-download link: https://jsoup.org/packages/jsoup-1.13.1-javadoc.jar
+## Test Classes:
+* JUnitTester
