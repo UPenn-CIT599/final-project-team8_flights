@@ -12,7 +12,8 @@ Report:
  - add a title/header (e.g. Here are the recommended flights meeting your criteria..)
  - For each flight, list 1) details 2)flight number 3) booking link
 
-
+Other:
+consolidate Flight.java and Flights.java classes
 
 Readme:
   - required libraries, etc.
