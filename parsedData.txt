@@ -1,1 +1,0 @@
-rank|price|site|leg1|departure flight|departure flight details|stops|departure flight duration|leg2|return flight|return flight details|stops|return flight duration|
