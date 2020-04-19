@@ -351,7 +351,7 @@ public class ActiveFlightWebScraping {
         //maybe try to parse with string index 0-2 and 6-8 or whatever
         Elements resultFlyInAirport =
             result.select("li.flight div.container div.section.duration div.bottom");
-        String flyInAirport = resultFlyInAirport.text();
+        String flyInAirport = resultFlyInAirport.get(1).text();
         System.out.println(flyInAirport);
         // scraped string YVR - SFO
         // parse first three characters and the last three characters for airportCode
