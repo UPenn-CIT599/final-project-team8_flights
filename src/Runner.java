@@ -91,8 +91,11 @@ public class Runner {
 //4. WEB-SCRAPING TO REPORT
 		
 		ReportGenerator report = new ReportGenerator();
-		
-		int maxBudget = Integer.parseInt(gui.getMaxBudget());
+	
+			int maxBudget = Integer.parseInt(gui.getMaxBudget());
+			System.out.println("Budget equal to" + maxBudget + "\n");
+
+
 		int maxLayovers = Integer.parseInt(gui.getMaxLayovers());
 		boolean directFlight = gui.isDirectFlight();
 		

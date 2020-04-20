@@ -1,3 +1,5 @@
+import java.security.Policy.Parameters;
+
 /**
  * Represents the all data points scrapped from Kayak.com 
  * 
@@ -37,6 +39,10 @@ public class Flights {
 		this.bookingLink = link;
 		this.flightNum = flyNum;
 
+	}
+	
+	public Flights() {
+		
 	}
 
 	public int getFlightPrice() {

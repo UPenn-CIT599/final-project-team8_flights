@@ -15,7 +15,7 @@ public class dataReader {
 	 */
 	public ArrayList<Flights> readCSV(){
 		ArrayList<Flights> flightList = new ArrayList<Flights>();
-		File flightData = new File ("newFlight_scraped.txt"); //ScrapedFlightData
+		File flightData = new File ("ScrapedFlightData.txt");
 		try {
 			Scanner scan = new Scanner(flightData);
 			//scan.nextLine();//skip the first line

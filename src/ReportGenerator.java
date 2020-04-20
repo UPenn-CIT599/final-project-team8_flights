@@ -10,8 +10,9 @@ import java.util.ArrayList;
 public class ReportGenerator {
 
 	/**
-	 * Generates a report with the top recommended flights based on their price
-	 * For those top flights, this will present top cheapest flight details and the flight numbers
+	 * Generates a report with the top recommended flights based on their price For
+	 * those top flights, this will present top cheapest flight details and the
+	 * flight numbers
 	 */
 	public void generateReport(int priceLimit, int layoverLimit, boolean directFlight) {
 		/*
@@ -19,34 +20,42 @@ public class ReportGenerator {
 		 * generates a text report with recommended flight details
 		 * gui.getMaxBudget(),gui.getMaxLayovers()
 		 */
-		
-		if(directFlight) {
-			layoverLimit=0;
+
+		if (directFlight) {
+			layoverLimit = 0;
 		}
-		
+
 		File out = new File("report.txt");
 		dataReader read = new dataReader();
 		ArrayList<Flights> flightList = read.readCSV();
 		Recommender rec = new Recommender(flightList);
 		ArrayList<Flights> rankedFlightList = rec.getFlightDetails(priceLimit, layoverLimit);
 		try (PrintWriter write = new PrintWriter(out)) {
-			write.println("Flights that meet your criteria are...");
-			write.println();
-			int countFlight = 1;
-			for (Flights flight : rankedFlightList){
-				for (int i = 0; i<rankedFlightList.size();i++) {
-					write.println();
-					write.println();
-					write.println("Flight" + countFlight);
-					write.println();
-					write.println("Flight Detail: " + "\n" +  flight.getFlightDetails());
-					write.println("Flight Number: " + "\n" +  flight.getFlightNum());
-					write.println("Link to Booking: " + "\n" +  flight.getBookingLink());
-					countFlight++;
+			if (rankedFlightList.isEmpty()) {
+				write.println(
+						"Sorry, no flights meeting your criteria were found. Please adjust your parameters and try again");
+				System.out.println(
+						"Sorry, no flights meeting your criteria were found. Please adjust your parameters and try again");
+			} else {
+				write.println("Flights that meet your criteria are...");
+				write.println();
+				int countFlight = 1;
+				for (Flights flight : rankedFlightList) {
+					for (int i = 0; i < rankedFlightList.size(); i++) {
+						write.println();
+						write.println();
+						write.println("Flight" + countFlight);
+						write.println();
+						write.println("Flight Detail: " + "\n" + flight.getFlightDetails());
+						write.println("Flight Number: " + "\n" + flight.getFlightNum());
+						write.println("Link to Booking: " + "\n" + flight.getBookingLink());
+						countFlight++;
+					}
+					break;
 				}
-				break;
+				System.out.println("Your report is created. Search for 'report.txt'");
+
 			}
-			System.out.println("Your report is created. Search for 'report.txt'");
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("Cannot find the file, please check the spelling of the file");

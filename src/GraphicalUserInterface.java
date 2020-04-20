@@ -30,7 +30,7 @@ public class GraphicalUserInterface {
     private String retYear;
 	boolean directFlight = false; //initialize as false. True=only recommend direct flights
 	String maxLayovers = "1"; //max allowed no of layovers
-	String maxBudget = "5000"; //max budget for total trip in $
+	String maxBudget; //max budget for total trip in $
     String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
 	
@@ -228,6 +228,10 @@ public class GraphicalUserInterface {
 		        destCity = tfDestination.getText();
 		        maxBudget = tfMaxBudget.getText();
 		        
+		        if(maxBudget.isEmpty()) {
+		        	maxBudget = "5000";
+		        }
+		        
 		        System.out.println("max budget for trip equals " + maxBudget);
 		        
 		        /*
@@ -237,6 +241,8 @@ public class GraphicalUserInterface {
 		            tf.setText("Getting flights from " + deptCity + " to " + destCity); 
 		        }
 		        */
+		        
+		        
 		        
 				depDay = depDay.substring(0,depDay.length()-2);
 				if(depDay.length()==1) {
