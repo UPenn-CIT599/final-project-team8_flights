@@ -1,89 +1,146 @@
+/**
+ * Represents the all data points scrapped from Kayak.com 
+ * 
+ * @author issacwon
+ *
+ */
 public class Flights {
-  
-  private String carrier = null;
-  private String departureTime = null;
-  private String arrivalTime = null;
-  private String stops = null;
-  private String duration = null;
-  private String departureAirport = null;
-  private String arrivalAirport = null;
-  private String flightDetails = null;
-  
-  public Flights() {
-  }
 
-  public String getCarrier() {
-    return carrier;
-  }
+	private String carrier = null;
+	private String departureTime = null;
+	private String arrivalTime = null;
+	private String stops = null;
+	private String duration = null;
+	private String departureAirport = null;
+	private String arrivalAirport = null;
+	private String flightDetails = null;
+	private int flightPrice;
+	private int numberLayover;
+	private String flightNum;
+	private String bookingLink;
 
-  public void setCarrier(String carrier) {
-    this.carrier = carrier;
-  }
+	/**
+	 * Represents one line from the csv file (once scrapped) that is passed on to
+	 * dataReader class
+	 * 
+	 * @param price
+	 * @param numLayover
+	 * @param flightDet
+	 * @param flyNum
+	 * @param link
+	 */
 
-  public String getDepartureTime() {
-    return departureTime;
-  }
+	public Flights(int price, int numLayover, String flightDet, String flyNum, String link) {
+		this.flightPrice = price;
+		this.numberLayover = numLayover;
+		this.flightDetails = flightDet;
+		this.bookingLink = link;
+		this.flightNum = flyNum;
 
-  public void setDepartureTime(String departureTime) {
-    this.departureTime = departureTime;
-  }
+	}
 
-  public String getArrivalTime() {
-    return arrivalTime;
-  }
+	public int getFlightPrice() {
+		return flightPrice;
+	}
 
-  public void setArrivalTime(String arrivalTime) {
-    this.arrivalTime = arrivalTime;
-  }
+	public void setFlightPrice(int flightPrice) {
+		this.flightPrice = flightPrice;
+	}
 
-  public String getStops() {
-    return stops;
-  }
+	public int getNumberLayover() {
+		return numberLayover;
+	}
 
-  public void setStops(String stops) {
-    this.stops = stops;
-  }
+	public void setNumberLayover(int numberLayover) {
+		this.numberLayover = numberLayover;
+	}
 
-  public String getDuration() {
-    return duration;
-  }
+	public String getFlightNum() {
+		return flightNum;
+	}
 
-  public void setDuration(String duration) {
-    this.duration = duration;
-  }
+	public void setFlightNum(String flightNum) {
+		this.flightNum = flightNum;
+	}
 
-  public String getDepartureAirport() {
-    return departureAirport;
-  }
+	public String getBookingLink() {
+		return bookingLink;
+	}
 
-  public void setDepartureAirport(String departureAirport) {
-    this.departureAirport = departureAirport;
-  }
+	public void setBookingLink(String bookingLink) {
+		this.bookingLink = bookingLink;
+	}
 
-  public String getArrivalAirport() {
-    return arrivalAirport;
-  }
+	public String getCarrier() {
+		return carrier;
+	}
 
-  public void setArrivalAirport(String arrivalAirport) {
-    this.arrivalAirport = arrivalAirport;
-  }
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}
 
-  public String getFlightDetails() {
-    return flightDetails;
-  }
+	public String getDepartureTime() {
+		return departureTime;
+	}
 
-  public void setFlightDetails(String flightDetails) {
-    this.flightDetails = flightDetails;
-  }
+	public void setDepartureTime(String departureTime) {
+		this.departureTime = departureTime;
+	}
 
-  public String getFlights() {
-    
-    String flightInfo = null;
-    flightInfo = carrier + ("|") + flightDetails + ("|") + departureTime
-        + ("|") + arrivalTime + ("|") + stops + ("|") + duration  
-        + ("|") + departureAirport+ ("|") + arrivalAirport;
-    return flightInfo;
-    
-  }
-  
+	public String getArrivalTime() {
+		return arrivalTime;
+	}
+
+	public void setArrivalTime(String arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+
+	public String getStops() {
+		return stops;
+	}
+
+	public void setStops(String stops) {
+		this.stops = stops;
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+
+	public String getDepartureAirport() {
+		return departureAirport;
+	}
+
+	public void setDepartureAirport(String departureAirport) {
+		this.departureAirport = departureAirport;
+	}
+
+	public String getArrivalAirport() {
+		return arrivalAirport;
+	}
+
+	public void setArrivalAirport(String arrivalAirport) {
+		this.arrivalAirport = arrivalAirport;
+	}
+
+	public String getFlightDetails() {
+		return flightDetails;
+	}
+
+	public void setFlightDetails(String flightDetails) {
+		this.flightDetails = flightDetails;
+	}
+
+	public String getFlights() {
+
+		String flightInfo = null;
+		flightInfo = carrier + ("|") + flightDetails + ("|") + departureTime + ("|") + arrivalTime + ("|") + stops
+				+ ("|") + duration + ("|") + departureAirport + ("|") + arrivalAirport;
+		return flightInfo;
+
+	}
 }
