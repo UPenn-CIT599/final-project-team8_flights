@@ -17,8 +17,8 @@ public class Runner {
 		GraphicalUserInterface gui = new GraphicalUserInterface();
 		gui.createGui();
 		
-		int i = 0;
-		while(i==0) {
+		int guiDone = 0;
+		while(guiDone==0) {
 			
 		    try {
 
@@ -40,7 +40,10 @@ public class Runner {
 		
 		AirportCode airportCode = new AirportCode("airportCodeList.txt", gui.getDeptCity(), gui.getDestCity());
 		
-		
+		if(!airportCode.isValidAirports()) {
+			System.out.println("Please enter valid cities. Try running the program again\n");
+			System.exit(0);
+		} else {		
 		String deptAirportCode = airportCode.getDeptAirportCode();
 		String destAirportCode = airportCode.getDestAirportCode();
 		
@@ -57,16 +60,16 @@ public class Runner {
 		//System.out.println("Return day to return = \n" + retDay);
 		
 	    String departureDate = gui.getDepYear() + "-" + gui.getDepMonth() + "-" + gui.getDepDay();
-	    //System.out.println("Departure date is: " + departureDate +"\n");
+	    System.out.println("Departure date is: " + departureDate +"\n");
 	    String returnDate = gui.getRetYear() + "-" + gui.getRetMonth() + "-" + gui.getRetDay();
-	    //System.out.println("Return date is: " + returnDate + "\n");
+	    System.out.println("Return date is: " + returnDate + "\n");
 
 		ActiveFlightWebScraping activeWebScrape = new ActiveFlightWebScraping(deptAirportCode, destAirportCode, departureDate, returnDate);
 		
 		
 		activeWebScrape.run();
 		
-		i = 0;
+		int i = 0;
 		while(i==0) {
 			
 		    try {
@@ -96,19 +99,7 @@ public class Runner {
 		report.generateReport(maxBudget,maxLayovers,directFlight);
 		
 		
-		
-		
-		
-		
-		//create an instance of GUI class
-		//create an instance of the web-scraping class
-		//create an instance of the data-reading and data-processing classes
-		//create an instance of the report generator class
-		
-		
-		
-		
-		
+		}
 
 	}
 
