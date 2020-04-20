@@ -30,3 +30,23 @@ Readme:
 Tidy-up:
 	- Comment and Indent Code
 	- JAVADOCS!! 
+
+
+
+
+
+
+BIG TASKS:
+
+1. JUNIT
+2. README (Viranchi to stitch together everything)
+	- libraries required (Chris)
+	- GUI runthrough + screenshots (Viranchi)
+		- limitations (date, cities, etc)
+	- Report generated (describe rough layout of report, what to expect, if no results found, etc)- Viranchi)
+3. ONE-PAGE SUMMARY (Issac)
+4. VIDEO - All
+
+MEDIUM TASKS:
+1. JAVA DOCS
+2. COMMENTING/INDENTING CODE
