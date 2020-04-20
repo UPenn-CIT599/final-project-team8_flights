@@ -13,9 +13,9 @@ public class dataReader {
 	 * and parse the data and convert to the appropriate variable format 
 	 * @return ArrayList flight
 	 */
-	public ArrayList<Flight> readCSV(){
-		ArrayList<Flight> flightList = new ArrayList<Flight>();
-		File flightData = new File ("ScrapedFlightData.txt");
+	public ArrayList<Flights> readCSV(){
+		ArrayList<Flights> flightList = new ArrayList<Flights>();
+		File flightData = new File ("newFlight_scraped.txt"); //ScrapedFlightData
 		try {
 			Scanner scan = new Scanner(flightData);
 			//scan.nextLine();//skip the first line
@@ -24,10 +24,11 @@ public class dataReader {
 				String[] dataLine = line.split("\\|");
 				int flightPrice = Integer.parseInt(dataLine[1].replace("$","").trim());//2
 				String[] layover = dataLine[7].split(" ");
-				//int numberLayover = Integer.parseInt(layover[0]);
+				int numberLayover = Integer.parseInt(layover[0]);
 				String flightDetail = dataLine[20];
+				String flightLink = dataLine[19];
 				String flyNum = dataLine[4]; //TODO update the data location based on Chris's output
-				Flight flight = new Flight(flightPrice,2,flightDetail,flyNum);
+				Flights flight = new Flights(flightPrice,numberLayover,flightDetail,flyNum,flightLink);
 				flightList.add(flight);
 				
 			}

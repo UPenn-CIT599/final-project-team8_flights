@@ -26,21 +26,25 @@ public class ReportGenerator {
 		
 		File out = new File("report.txt");
 		dataReader read = new dataReader();
-		ArrayList<Flight> flightList = read.readCSV();
+		ArrayList<Flights> flightList = read.readCSV();
 		Recommender rec = new Recommender(flightList);
-		ArrayList<Flight> rankedFlightList = rec.getFlightDetails(priceLimit, layoverLimit);
-
+		ArrayList<Flights> rankedFlightList = rec.getFlightDetails(priceLimit, layoverLimit);
 		try (PrintWriter write = new PrintWriter(out)) {
-			write.println("Top 5 cheapest flights");
+			write.println("Flights that meet your criteria are...");
 			write.println();
-			write.println("Flight details: ");
-			for (Flight flight : rankedFlightList) {
-				write.println(flight.getFlightDetail());
-			}
-			write.println();
-			write.println("Flight numbers: ");
-			for (Flight fly: rankedFlightList) {
-				write.println(fly.getFlightNum1());
+			int countFlight = 1;
+			for (Flights flight : rankedFlightList){
+				for (int i = 0; i<rankedFlightList.size();i++) {
+					write.println();
+					write.println();
+					write.println("Flight" + countFlight);
+					write.println();
+					write.println("Flight Detail: " + "\n" +  flight.getFlightDetails());
+					write.println("Flight Number: " + "\n" +  flight.getFlightNum());
+					write.println("Link to Booking: " + "\n" +  flight.getBookingLink());
+					countFlight++;
+				}
+				break;
 			}
 			System.out.println("Your report is created. Search for 'report.txt'");
 		} catch (IOException e) {

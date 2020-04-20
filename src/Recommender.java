@@ -7,10 +7,10 @@ import java.util.HashMap;
  *
  */
 public class Recommender {
-	ArrayList<Flight> flightList = new ArrayList<Flight>();
-	ArrayList<Integer> numOfLayover = new ArrayList<Integer>();
+	ArrayList<Flights> flightList = new ArrayList<Flights>();
 	
-	public Recommender(ArrayList<Flight> flightList) {
+	
+	public Recommender(ArrayList<Flights> flightList) {
 		this.flightList = flightList;
 	}
 	/**
@@ -20,10 +20,10 @@ public class Recommender {
 	 * @param layoverLimit
 	 * @return ArrayList of Flightlist
 	 */
-	public ArrayList<Flight> getFlightDetails(int priceLimit, int layoverLimit) {
+	public ArrayList<Flights> getFlightDetails(int priceLimit, int layoverLimit) {
 		int topCnt = 5;//fixed number of flights details (MVP restriction)
-		ArrayList<Flight> tmpFlightList = new ArrayList<Flight>();
-		for (Flight f : this.flightList) {
+		ArrayList<Flights> tmpFlightList = new ArrayList<Flights>();
+		for (Flights f : this.flightList) {
 			if(tmpFlightList.size() >= topCnt) {
 				break;
 			}
@@ -31,7 +31,7 @@ public class Recommender {
 				// Ensure that the flight does not have more layover than given number
 				if (f.getNumberLayover() <= layoverLimit) {
 					tmpFlightList.add(f);
-					numOfLayover.add(f.getNumberLayover());
+					
 				}
 
 			}

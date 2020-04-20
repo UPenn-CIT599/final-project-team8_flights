@@ -8,6 +8,9 @@ public class AirportCode {
 	private HashMap<Integer, String> airportCodeData; // key=index; value=flightData Class
 	String deptAirportCode;
 	String destAirportCode;
+	boolean deptCodeFound = false;
+	boolean destCodeFound = false;
+	boolean validAirports = false;
 	
 	public AirportCode(String filename, String deptCity, String destCity) {
 		File file = new File(filename);
@@ -24,18 +27,24 @@ public class AirportCode {
 				String[] columnData = codesRow.split(",");
 				String readCity = columnData[0];
 				
-				if(deptCity.equals(readCity)) {
+				if(deptCity.equalsIgnoreCase(readCity)) {
 					deptAirportCode = columnData[1];
+					deptCodeFound = true;
 				}
 				
-				if(destCity.equals(readCity)) {
+				if(destCity.equalsIgnoreCase(readCity)) {
 					destAirportCode = columnData[1];
+					destCodeFound = true;
 				}
 			}
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		if(deptCodeFound && destCodeFound) {
+			validAirports = true;
 		}
 	}
 
@@ -65,6 +74,14 @@ public class AirportCode {
 	 */
 	public void setDestAirportCode(String destAirportCode) {
 		this.destAirportCode = destAirportCode;
+	}
+	
+	
+	/**
+	 * @return the validAirports
+	 */
+	public boolean isValidAirports() {
+		return validAirports;
 	}
 	
 }
