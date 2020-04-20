@@ -8,12 +8,17 @@ Web-scraper:
    - fix ?/- splitter 
 
 Report:
- - Account for "direct flight" boolean. Might need to call this through main. 
- - add a title/header (e.g. Here are the recommended flights meeting your criteria..)
- - For each flight, list 1) details 2)flight number 3) booking link
+ - (DONE) Account for "direct flight" boolean. Might need to call this through main. 
+ - (DONE) add a title/header (e.g. Here are the recommended flights meeting your criteria..)
+ - (DONE) For each flight, list 1) details 2)flight number 3) booking link
 
 Other:
-consolidate Flight.java and Flights.java classes
+(DONE) consolidate Flight.java and Flights.java classes
+
+
+Testing:
+  - 
+
 
 Readme:
   - required libraries, etc.
