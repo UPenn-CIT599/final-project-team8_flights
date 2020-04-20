@@ -1,7 +1,7 @@
 GUI:
-  - fix day getter (truncate "th" etc outside of getter function)
+  - (DONE) fix day getter (truncate "th" etc outside of getter function)
   - clean up airport code text file (main airports only)
-  - set some deafult values for everything so it doesn't break if not selected
+  - (DONE) set some deafult values for everything so it doesn't break if not selected
 
 
 Web-scraper:
