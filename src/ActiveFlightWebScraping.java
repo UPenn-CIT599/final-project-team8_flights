@@ -19,12 +19,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 /**
- * This class scrapes flight information from Kayak.com
+ * Class to scrape flight information from Kayak.com
  * and stores the data in a .txt file for processing.
  * <p>
  * This class consists of two main methods.
  * <li>
- * <b>ActiveWebHtmlLoading</b> method uses selenium WebDriver to instantiate and 
+ * <b>ActiveWebHtmlLoading</b> method uses selenium WebDriver binding tool to instantiate and 
  * control Chrome web browser to get flight information from kayak.com with specific 
  * searching criteria including departure/arrival airports and dates. It stores
  * html source into a html file for scraping.
@@ -44,9 +44,20 @@ public class ActiveFlightWebScraping {
   private String inputHtmlFileName = "KayakFlightInfo.html";
   private String scrapedFileName = "ScrapedFlightData.txt";
   private String baseUrl = "https://www.kayak.com/flights/";
+  private String pageTitle = null;
   private boolean scrapingFileWritten = false;
   private int maxPageLoad = 2; //number of pages to load from kayak query
   private int debugMode = 0;
+
+  
+  public String getPageTitle () {
+    return pageTitle;
+  }
+
+  
+  public void setDebugMode (int debugMode) {
+    this.debugMode = debugMode;
+  }
 
   /**
    * 
@@ -125,10 +136,6 @@ public class ActiveFlightWebScraping {
       scrapedFileName = "JUnitTest" + scrapedFileName;
     }
   }
-  
-  public void setDebugMode (int debugMode) {
-    this.debugMode = debugMode;
-  }
 
   /**
    * 
@@ -157,8 +164,8 @@ public class ActiveFlightWebScraping {
     }
 
     // get the actual value of the title
-    String title = browser.getTitle();
-    System.out.println(title);
+    pageTitle = browser.getTitle();
+    System.out.println(pageTitle);
 
     // refresh page to get rid of the pop-up
     browser.navigate().refresh();

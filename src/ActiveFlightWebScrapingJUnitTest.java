@@ -8,7 +8,7 @@ import org.junit.jupiter.api.*;;
 
  
 /**
- * This JUnit test class tests ActiveFlightWebScraping class scraped
+ * Class to test ActiveFlightWebScraping class scraped
  * flight data file, ScrapedFlightData.txt.
  * <p>
  * 
@@ -33,11 +33,12 @@ class ActiveFlightWebScrapingJUnitTest {
     
     //initialize flight scraping info
     ActiveFlightWebScraping newFlight = 
-        new ActiveFlightWebScraping("kayak.com/flights/YVR-ARN/2020-09-01/2020-09-30?sort=bestflight_a");
+        new ActiveFlightWebScraping("https://www.kayak.com/flights/YVR-ARN/2020-09-01/2020-09-30?sort=price_a");
     
     //set debug mode to 1 for scraping from a known flight html file
-    newFlight.setDebugMode(1);
+    newFlight.setDebugMode(0);
     newFlight.run();
+    System.out.println("page title: " + newFlight.getPageTitle());
         
     String scrapedFileName = "JUnitScrapedFlightData.txt";
     
