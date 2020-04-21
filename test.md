@@ -1,2 +1,1 @@
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](url)
+![Alt text](relative/path/to/img.jpg?raw=true "Title")
