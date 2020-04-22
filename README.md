@@ -62,6 +62,8 @@ Note that it is intended for this program to be treated as a minimum viable prod
 
 ## Running the program
 
+### User Input
+
 Prior to running the program, please ensure you have all required libraries and drivers outlined above in the project folder. 
 
 The program is run from the main class. Upon running the main class, a graphical user interface window will open as shown in the figure below.
@@ -77,6 +79,11 @@ The user then enters the following information:
 * Check the "direct flights only" checkbox if only direct flights are desired. The program will ignore the max layover field in this case.
 * Maximum budget fare for total trip, input as a positive integer.
 
+Finally, the user clicks the "SEARCH FOR FLIGHTS" button, upon which the rest of the program executes. 
+
+#### Handling input errors
+
+#### Limitations
 
 **1 heading 1**
 ***heading 2***
