@@ -54,6 +54,18 @@ external download link: https://chromedriver.storage.googleapis.com/index.html?p
 
 # User Guide
 
+## Introduction
+
+Team 8's final project is a flight recommender system. The program takes in a set of flight parameters specified by the user, scrapes the web to search for flights satisfying the user's requirements, and generates a curated report of the top flights.
+
+Note that it is intended for this program to be treated as a minimum viable product (MVP) with several limitations outlined throughout this user guide. 
+
+## Running the program
+
+Prior to running the program, please ensure you have all required libraries and drivers outlined above in the project folder. 
+
+
+
 **1 heading 1**
 ***heading 2***
 ****heading 3****
