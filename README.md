@@ -102,11 +102,20 @@ It is assumed that the user will:
 
 ### Execution of the Program
 
-Upon clicking the "SEARCH FOR FLIGHTS" GUI button with valid inputs, the rest of the program will execute. The state of the terminal will look similar to the screenshot below. Note that the message in red are expected. 
+Upon clicking the "SEARCH FOR FLIGHTS" GUI button with valid inputs, the rest of the program will execute, opening up a Google Chrome window as shown below, searching flight data with parameters specified by the user.  
+
+<p align="center">
+  <img width="600" height=440" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/chrome_flightscraping.png?raw=true">
+</p>
+
+
+The state of the terminal will look similar to the screenshot below. Note that the message in red are expected. The program may take upto a few minutes to scrape the web for flight data. Upon completion of web scraping, the terminal will print the message "Scraping complete". 
 
 <p align="center">
   <img width="600" height=440" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_running.PNG?raw=true">
 </p>
+                                                                                                                                         
+                                                                                                                                         
 
 
 * if no flights found, user told
