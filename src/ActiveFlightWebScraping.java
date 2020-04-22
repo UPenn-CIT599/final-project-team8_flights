@@ -46,7 +46,7 @@ public class ActiveFlightWebScraping {
   private String baseUrl = "https://www.kayak.com/flights/";
   private String pageTitle = null;
   private boolean scrapingFileWritten = false;
-  private int maxPageLoad = 2; //number of pages to load from kayak query
+  private int maxPageLoad = 3; //number of pages to load from kayak query
   private int debugMode = 0;
 
   
