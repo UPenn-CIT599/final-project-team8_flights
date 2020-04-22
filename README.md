@@ -117,7 +117,13 @@ The state of the terminal will look similar to the screenshot below. Note that t
   <img width="600" height=440" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_running.PNG?raw=true">
 </p>
                                                                                                                                          
-                                                                                                                                         
+### Generation of Report
+
+Once the webscraping is complete, the program will generate a report of the top five flights (or less if there aren't a sufficient number of flights meeting the user's criteria) in a report.txt file. The user will be prompted with a message once the report has been generated, as shown below.
+
+<p align="center">
+  <img width="900" height=225" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_done.PNG?raw=true">
+</p>
 
 
 * if no flights found, user told
