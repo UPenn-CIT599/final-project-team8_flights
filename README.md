@@ -66,7 +66,7 @@ Note that it is intended for this program to be treated as a minimum viable prod
 
 Prior to running the program, please ensure you have all required libraries and drivers outlined above in the project folder. 
 
-The program is run from the main class. Upon running the main class, a graphical user interface window will open as shown in the figure below.
+The program is run from the main class. Upon running the main class, a graphical user interface (GUI) window will open as shown in the figure below.
 
 <p align="center">
   <img width="318" height="240" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/Capture0.PNG?raw=true">
@@ -79,7 +79,12 @@ The user then enters the following information:
 * Check the "direct flights only" checkbox if only direct flights are desired. The program will ignore the max layover field in this case.
 * Maximum budget fare for total trip, input as a positive integer.
 
-Finally, the user clicks the "SEARCH FOR FLIGHTS" button, upon which the rest of the program executes. 
+The figure below shows an example of the final state of the GUI upon entering information for all required fields. At this stage, the user clicks the "SEARCH FOR FLIGHTS" button, upon which the rest of the program executes.
+
+<p align="center">
+  <img width="318" height="240" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/gui_final_state.PNG?raw=true">
+</p>
+
 
 #### Handling input errors
 
@@ -95,6 +100,13 @@ It is assumed that the user will:
 * input a return date that is after the departure date
 * enter a positive integer for the maximum budget
 
+### Execution of the Program
+
+Upon clicking the "SEARCH FOR FLIGHTS" GUI button with valid inputs, the rest of the program will execute. The state of the terminal will look similar to the screenshot below. Note that the message in red are expected. 
+
+<p align="center">
+  <img width="318" height="240" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_running.PNG?raw=true">
+</p>
 
 
 * if no flights found, user told
