@@ -70,6 +70,12 @@ The program is run from the main class. Upon running the main class, a graphical
   <img width="318" height="240" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/Capture0.PNG?raw=true">
 </p>
 
+The user then enters the following information:
+* Departure and return dates from the drop-down fields
+* Departure and destination cities in the text fields
+* Maximum number of layovers from the dropdown menu. 
+* Check the "direct flights only" checkbox if only direct flights are desired. The program will ignore the max layover field in this case.
+* Maximum budget fare for total trip, input as a positive integer.
 
 
 **1 heading 1**
