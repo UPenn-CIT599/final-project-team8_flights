@@ -1,6 +1,6 @@
 # final-project-team8_flights
 
-## Pre-requisites setting up Java build environment:
+## Pre-requisites: Setting up Java build environment:
 **1. Git clone the entire repository including external libraries and chromedriver_download folders to your local project workspace**
 
 **2. External downloads**
@@ -10,7 +10,7 @@
 **3. Library setup**
 * Eclipse's external library is setup with relative path in .classpath file. You should not need to setup separately.
 
-**4. chrome driver setup**
+**4. Chrome Driver Setup**
 
 **MAC User**
 * Extract chromedriver_mac64.zip file from chromedriver_download folder.
