@@ -37,13 +37,21 @@ external download link: download link: https://www.selenium.dev/downloads/
 external download link: https://chromedriver.storage.googleapis.com/index.html?path=81.0.4044.69/
 
 ## Main Classes:
-* GUI Class
 * ActiveFlightWebScraping Class
+* AirportCode Class
+* DataReader Class
+* Flights Class
+* FlightWebScraping Class
+* FlightWebScraping Runner Class
+* GraphicalUserInterface Class
+* Itinerary Class
+* Main Class
+* Recommender Class
 * ReportGenerator Class
-* Runner Class
 
 ## Test Classes:
 * JUnitTester
+* CHRIS TO ADD MORE TEST CLASSES
 
 ### testing third subheading
 Hello 123
