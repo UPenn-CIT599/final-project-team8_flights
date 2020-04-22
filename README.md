@@ -67,7 +67,7 @@ Prior to running the program, please ensure you have all required libraries and 
 The program is run from the main class. Upon running the main class, a graphical user interface window will open as shown in the figure below.
 
 <p align="center">
-  <img width="212" height="160" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/Capture0.PNG?raw=true">
+  <img width="318" height="240" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/Capture0.PNG?raw=true">
 </p>
 
 
