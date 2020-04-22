@@ -83,11 +83,18 @@ Finally, the user clicks the "SEARCH FOR FLIGHTS" button, upon which the rest of
 
 #### Handling input errors
 
+The program handles the following user input errors:
+* No dates selected - sets default departure date to today's date, and return date to one month from today's date
+* Incorrect spelling / invalid cities entered - program print's a message to the terminal and exists. User to retry with valid city names
+* Max layovers not selected - defaults to value of 1
+* Max budget not entered - defaults to 5000
+
 #### Limitations
 
-**1 heading 1**
-***heading 2***
-****heading 3****
+It is assumed that the user will:
+* input a return date that is after the departure date
+* enter a positive integer for the maximum budget
 
-### testing third subheading
-Hello 123
+
+
+* if no flights found, user told
