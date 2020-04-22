@@ -140,7 +140,10 @@ public class Flights {
 	public void setFlightDetails(String flightDetails) {
 		this.flightDetails = flightDetails;
 	}
-
+	/**
+	 * Getter for Flights with "|" delimited format
+	 * @return
+	 */
 	public String getFlights() {
 
 		String flightInfo = null;

@@ -22,12 +22,12 @@ public class dataReader {
 			while(scan.hasNextLine()) {
 				String line = scan.nextLine();
 				String[] dataLine = line.split("\\|");
-				int flightPrice = Integer.parseInt(dataLine[1].replace("$","").trim());//2
+				int flightPrice = Integer.parseInt(dataLine[1].replace("$","").trim());
 				String[] layover = dataLine[7].split(" ");
 				int numberLayover = Integer.parseInt(layover[0]);
 				String flightDetail = dataLine[20];
 				String flightLink = dataLine[19];
-				String flyNum = dataLine[4]; //TODO update the data location based on Chris's output
+				String flyNum = dataLine[4]; 
 				Flights flight = new Flights(flightPrice,numberLayover,flightDetail,flyNum,flightLink);
 				flightList.add(flight);
 				

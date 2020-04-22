@@ -6,20 +6,21 @@ import java.util.ArrayList;
 /**
  * The ReportGenerator Class gets data from the Recommender Class, and generates
  * a report of the recommended flights for the user
+ * 
+ * @author issacwon
+ *
  */
 public class ReportGenerator {
 
 	/**
 	 * Generates a report with the top recommended flights based on their price For
-	 * those top flights, this will present top cheapest flight details and the
-	 * flight numbers
+	 * those top 5 flights, this will present top 5 cheapest flight details, the
+	 * flight numbers and the booking links
+	 * @param priceLimit
+	 * @param layoverLimit
+	 * @param directFlight
 	 */
 	public void generateReport(int priceLimit, int layoverLimit, boolean directFlight) {
-		/*
-		 * Write method that retrieves information from the data processing class and
-		 * generates a text report with recommended flight details
-		 * gui.getMaxBudget(),gui.getMaxLayovers()
-		 */
 
 		if (directFlight) {
 			layoverLimit = 0;
@@ -46,7 +47,11 @@ public class ReportGenerator {
 						write.println();
 						write.println("Flight" + countFlight);
 						write.println();
-						write.println("Flight Detail: " + "\n" + flight.getFlightDetails());
+						write.print("Flight Detail: ");
+						String[] details = flight.getFlightDetails().split("Leg ");
+						for (String detail : details) {
+							write.println(detail);
+						}	
 						write.println("Flight Number: " + "\n" + flight.getFlightNum());
 						write.println("Link to Booking: " + "\n" + flight.getBookingLink());
 						countFlight++;
@@ -62,19 +67,5 @@ public class ReportGenerator {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		ReportGenerator r = new ReportGenerator();
-//		r.generateReport();
-//	}
 
-	/**
-	 * Draws recommended flight paths on a map of the world, and writes to an image
-	 * file
-	 */
-//	void drawFlightPaths() {
-	/*
-	 * to-do: Write method that takes in the departure and destination cities for
-	 * the recommended flights, and draws out flight paths overlaid on a map of the
-	 * world
-	 */
 }

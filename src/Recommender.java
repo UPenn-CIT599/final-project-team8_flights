@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 /**
- * call the flight class and return a hashmap with the flight info
- * that meet the condition parameters set by the users from GUI class
+ * call the flights class and return a ArrayList with the flights info
+ * 
  * @author issacwon
  *
  */
@@ -16,9 +16,11 @@ public class Recommender {
 	/**
 	 * Return a HashMap that filters out overbudget flights 
 	 * and flights with more layover than preferred
+	 * The list from the webscrapper is already ranked by the flight price
+	 * 
 	 * @param priceLimit
 	 * @param layoverLimit
-	 * @return ArrayList of Flightlist
+	 * @return ArrayList tmpFlightList
 	 */
 	public ArrayList<Flights> getFlightDetails(int priceLimit, int layoverLimit) {
 		int topCnt = 5;//fixed number of flights details (MVP restriction)
@@ -28,7 +30,7 @@ public class Recommender {
 				break;
 			}
 			if (f.getFlightPrice() <= priceLimit) {
-				// Ensure that the flight does not have more layover than given number
+				// Ensures that the flight does not have more layover than given number
 				if (f.getNumberLayover() <= layoverLimit) {
 					tmpFlightList.add(f);
 					
@@ -39,11 +41,5 @@ public class Recommender {
 		}
 		return tmpFlightList;
 	}
-//	public ArrayList<String> getFlightNum(){
-//		dataReader read = new dataReader ();
-//		ArrayList<Flight> flightList = read.readCSV();
-//		Recommender rec = new Recommender (flightList);
-//		ArrayList<Flight> rankedFlightList = rec.getFlightDetails(gui.maxBudget,gui.maxLayovers);
-//	}
 
 }
