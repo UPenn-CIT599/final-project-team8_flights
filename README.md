@@ -105,7 +105,7 @@ It is assumed that the user will:
 Upon clicking the "SEARCH FOR FLIGHTS" GUI button with valid inputs, the rest of the program will execute. The state of the terminal will look similar to the screenshot below. Note that the message in red are expected. 
 
 <p align="center">
-  <img width="914" height=672" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_running.PNG?raw=true">
+  <img width="600" height=440" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_running.PNG?raw=true">
 </p>
 
 
