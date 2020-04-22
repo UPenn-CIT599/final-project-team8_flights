@@ -64,6 +64,12 @@ Note that it is intended for this program to be treated as a minimum viable prod
 
 Prior to running the program, please ensure you have all required libraries and drivers outlined above in the project folder. 
 
+The program is run from the main class. Upon running the main class, a graphical user interface window will open as shown in the figure below.
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/Capture0.PNG?raw=true">
+</p>
+
 
 
 **1 heading 1**
