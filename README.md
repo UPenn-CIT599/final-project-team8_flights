@@ -104,6 +104,8 @@ It is assumed that the user will:
 
 Upon clicking the "SEARCH FOR FLIGHTS" GUI button with valid inputs, the rest of the program will execute, opening up a Google Chrome window as shown below, searching flight data with parameters specified by the user.  
 
+Note the message at the top of the window informing the user that Chrome is being operated by test software. Please do not click anywhere in this browser while the data is being webscraped. Upon completion of webscraping, the Chrome browser window will close itself.
+
 <p align="center">
   <img width="600" height=440" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/chrome_flightscraping.png?raw=true">
 </p>
