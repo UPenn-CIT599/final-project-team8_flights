@@ -49,9 +49,11 @@ external download link: https://chromedriver.storage.googleapis.com/index.html?p
 * Recommender Class
 * ReportGenerator Class
 
-## Test Classes:
-* JUnitTester
-* CHRIS TO ADD MORE TEST CLASSES
+# User Guide:
+
+**1 heading 1
+***heading 2
+****heading 3
 
 ### testing third subheading
 Hello 123
