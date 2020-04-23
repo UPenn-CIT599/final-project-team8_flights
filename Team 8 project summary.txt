@@ -1,0 +1,16 @@
+Team 8 project summary
+
+Project description:
+
+Our final project name is Flights. The program utilizes graphical user interface with Java Swing to get the criteria the end user has with regards to the flight, fetch the flights with the criteria and create a report file with the recommended flights that meet the criteria. The program is a minimal viable product stage where it is only fetching the data from kayak.com and the report contains top 5 flights in price order (cheapest to expensive). 
+
+Project breakdown [with names]:
+
+1. Graphical user interface to get the trip criteria from the user and save them in instance variables [Viranchi Patel]
+2. Web scrapping with the user criteria (Departing airport, Arriving airpot and dates) and save the data in a txt file [Chris Yao]
+3. Read the txt file from step 2, sort the list based on user criteria (maximum price and number of layovers) and report [Issac Won]
+4. Integration of all classes together [Viranchi Patel, Chris Yao, Issac Won]
+
+Github repository:
+
+https://github.com/UPenn-CIT599/final-project-team8_flights
