@@ -136,7 +136,7 @@ Once the webscraping is complete, the program will generate a report of the top 
 Finally, the report.txt file can be found in the project folder. This file contains summaries of the top flights, details, and web links to book, as shown below. If no valid flights are found, a message is displayed to the user asking to revise some of the input parameters and to retry. 
 
 <p align="center">
-  <img width="600" height=440" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_running.PNG?raw=true">
+  <img width="800" height=440" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/final_report.PNG?raw=true">
 </p>
 
 The user may then proceed to select their desired flight and book through the booking link provided :) 
