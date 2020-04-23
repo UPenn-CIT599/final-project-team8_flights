@@ -98,14 +98,15 @@ The figure below shows an example of the final state of the GUI upon entering in
 The program handles the following user input errors:
 * No dates selected - sets default departure date to today's date, and return date to one month from today's date
 * Incorrect spelling / invalid cities entered - program print's a message to the terminal and exists. User to retry with valid city names
+* At present, the program reads in city names and maps them to an airport code based on a predefined list of cities and airport codes. Occasionally, a city will have several airport codes, which the program automatically selects somewhat arbitrarily. If the user would prefer a particular airport code to be used for a city, they can enter cityname.airport code in the GUI city field. For example, entering Stockholm.arn in the departure city field would ensure that Stockholm Arlanda Airport is used as the airport for the departure city.
 * Max layovers not selected - defaults to value of 1
 * Max budget not entered - defaults to 5000
 
 #### Limitations
 
 It is assumed that the user will:
-* input a return date that is after the departure date
-* enter a positive integer for the maximum budget
+* Input a return date that is after the departure date
+* Enter a positive integer for the maximum budget
 
 ### Execution of the Program
 
