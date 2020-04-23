@@ -1,7 +1,7 @@
 import java.security.Policy.Parameters;
 
 /**
- * Represents the all data points scrapped from Kayak.com 
+ * Represents the all data points scrapped from Kayak.com
  * 
  * @author issacwon
  *
@@ -40,9 +40,9 @@ public class Flights {
 		this.flightNum = flyNum;
 
 	}
-	
+
 	public Flights() {
-		
+
 	}
 
 	public int getFlightPrice() {
@@ -140,8 +140,10 @@ public class Flights {
 	public void setFlightDetails(String flightDetails) {
 		this.flightDetails = flightDetails;
 	}
+
 	/**
 	 * Getter for Flights with "|" delimited format
+	 * 
 	 * @return
 	 */
 	public String getFlights() {

@@ -16,6 +16,7 @@ public class ReportGenerator {
 	 * Generates a report with the top recommended flights based on their price For
 	 * those top 5 flights, this will present top 5 cheapest flight details, the
 	 * flight numbers and the booking links
+	 * 
 	 * @param priceLimit
 	 * @param layoverLimit
 	 * @param directFlight
@@ -51,7 +52,7 @@ public class ReportGenerator {
 						String[] details = flight.getFlightDetails().split("Leg ");
 						for (String detail : details) {
 							write.println(detail);
-						}	
+						}
 						write.println("Flight Number: " + "\n" + flight.getFlightNum());
 						write.println("Link to Booking: " + "\n" + flight.getBookingLink());
 						countFlight++;
@@ -66,6 +67,5 @@ public class ReportGenerator {
 			System.out.println("Cannot find the file, please check the spelling of the file");
 		}
 	}
-
 
 }
