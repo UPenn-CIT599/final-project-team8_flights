@@ -43,7 +43,7 @@ external download link: download link: https://www.selenium.dev/downloads/
 ### Chrome driver
 external download link: https://chromedriver.storage.googleapis.com/index.html?path=81.0.4044.69/
 
-## Main Classes:
+## Classes:
 * ActiveFlightWebScraping Class
 * AirportCode Class
 * DataReader Class
