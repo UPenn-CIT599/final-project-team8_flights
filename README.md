@@ -139,7 +139,7 @@ Finally, the report.txt file can be found in the project folder. This file conta
   <img width="1200" height=550" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/final_report.PNG?raw=true">
 </p>
 
-The user may then proceed to select their desired flight and book through the booking link provided :) 
+At this stage the program is complete, and the user may then proceed to select their desired flight and book through the booking link provided.
 
 
 
