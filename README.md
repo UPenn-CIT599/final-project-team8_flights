@@ -24,7 +24,14 @@
 * Extract chromedriver_linux64.zip file from chromedriver_download folder.
 * Move chromedriver file to project directory
 
-**5. You're all set!**
+**5. Selecting the correct text-file encoding setting on Eclipse**
+
+* To ensure compatability of the text files across mac/windows programs, set the textfile encoding on eclipse to UTF-8. This can be done as shown in the figure below by selecting Window->Preferences->Workspace (on left of panel) -> Text File Encoding -> Other: UTF-8.
+
+<p align="center">
+  <img width="625" height="500" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/eclipse_text_setting.JPG?raw=true">
+</p>
+
 
 ## External download links (reference only)
 ### JSoup
