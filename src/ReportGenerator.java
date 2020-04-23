@@ -27,7 +27,7 @@ public class ReportGenerator {
 		}
 
 		File out = new File("report.txt");
-		dataReader read = new dataReader();
+		DataReader read = new DataReader();
 		ArrayList<Flights> flightList = read.readCSV();
 		Recommender rec = new Recommender(flightList);
 		ArrayList<Flights> rankedFlightList = rec.getFlightDetails(priceLimit, layoverLimit);
