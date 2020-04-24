@@ -24,9 +24,24 @@ public class DataReader {
 			while (scan.hasNextLine()) {
 				String line = scan.nextLine();
 				String[] dataLine = line.split("\\|");
-				int flightPrice = Integer.parseInt(dataLine[1].replace("$", "").trim());
+				
+				// if any of the columns is missing
+				// skip the line
+				if (dataLine.length <21) break;
+				
+				int flightPrice = 0;
+				if (!dataLine[1].isEmpty()) {
+				  //System.out.println(dataLine[1].toString());
+				  flightPrice = Integer.parseInt(dataLine[1].replace("$", "").trim());
+				} else break;
+				
 				String[] layover = dataLine[7].split(" ");
-				int numberLayover = Integer.parseInt(layover[0]);
+				
+				// number of layover is preset to 0 for nonstop flights
+				int numberLayover = 0;
+				if(layover.length > 1) {
+				  numberLayover = Integer.parseInt(layover[0]);
+				}
 				String flightDetail = dataLine[20];
 				String flightLink = dataLine[19];
 				String flyNum = dataLine[4];
@@ -40,6 +55,11 @@ public class DataReader {
 
 		}
 		return flightList;
+	}
+	
+	public static void main(String[] args) {
+	  DataReader dataReader = new DataReader();
+	  dataReader.readCSV();
 	}
 
 }
