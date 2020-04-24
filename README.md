@@ -92,6 +92,20 @@ The figure below shows an example of the final state of the GUI upon entering in
   <img width="318" height="240" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/gui_final_state.PNG?raw=true">
 </p>
 
+#### Viewing the GUI on a MAC
+
+If running this program on a MAC, the user may initially see the GUI as a blank window as shown below. 
+
+<p align="center">
+  <img width="318" height="240" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/mac_gui_screencapture1.png?raw=true">
+</p>
+
+The user should slightly expand the size of the window in order to view the components of the GUI as intended. 
+
+<p align="center">
+  <img width="318" height="240" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/mac_gui_screencapture2.png?raw=true">
+</p>
+
 
 #### Handling input errors
 
