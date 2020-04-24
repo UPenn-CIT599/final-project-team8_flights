@@ -145,7 +145,7 @@ The state of the terminal will look similar to the screenshot below. Note that t
 Once the webscraping is complete, the program will generate a report of the top five flights (or less if there aren't a sufficient number of flights meeting the user's criteria) in a report.txt file. The user will be prompted with a message once the report has been generated, as shown below.
 
 <p align="center">
-  <img width="600" height=150" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_done.PNG?raw=true">
+  <img width="600" height=130" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_done.PNG?raw=true">
 </p>
 
 Finally, the report.txt file can be found in the project folder. This file contains summaries of the top flights, details, and web links to book, as shown below. If no valid flights are found, a message is displayed to the user asking to revise some of the input parameters and to retry. 
