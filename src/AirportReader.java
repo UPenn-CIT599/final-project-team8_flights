@@ -57,8 +57,6 @@ public class AirportReader {
         readAirportCsv.add(airport);
         row++;
       }
-      System.out.println("\nData processing completed.");
-      System.out.println("Total of " + row + " rows processed!");
       scan.close();
       
     } catch (FileNotFoundException e) {

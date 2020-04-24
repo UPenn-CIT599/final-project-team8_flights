@@ -96,7 +96,6 @@ public class AirportCode {
     // if search result is empty
     // return "Not Found" string
     if (airportList.size() <= 0) {
-      System.out.println(airportCode);
       return airportCode;
     }
 
@@ -109,7 +108,6 @@ public class AirportCode {
       if ((parsedCity.length) > 1) {
         if (airportList.get(i).getIATACode().equalsIgnoreCase(parsedCity[1])) {
           airportCode = airportList.get(i).getIATACode();
-          System.out.println(airportCode);
           return airportCode;
         }
       }
@@ -126,10 +124,8 @@ public class AirportCode {
         airportList.remove(i);
       }
     }
-    System.out.println("filtered airport number: " + airportList.size());
     // return the first value of airportList
     airportCode = airportList.get(airportList.keySet().toArray()[0]).getIATACode();
-    System.out.println(airportCode);
     return airportCode;
   }
 
@@ -177,6 +173,7 @@ public class AirportCode {
     
   }
   */
+  
   
   
 

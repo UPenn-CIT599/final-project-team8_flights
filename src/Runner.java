@@ -37,7 +37,6 @@ public class Runner {
 			}
 
 			if (gui.isReadyToSearch()) {
-				System.out.println("Starting web-scraper!\n");
 				break;
 			}
 		}
@@ -51,6 +50,7 @@ public class Runner {
 			System.out.println("Please enter valid cities. Try running the program again\n");
 			System.exit(0);
 		} else {
+			System.out.println("Starting web-scraper!\n");
 			String deptAirportCode = airportCode.getDeptAirportCode();
 			String destAirportCode = airportCode.getDestAirportCode();
 
@@ -76,7 +76,6 @@ public class Runner {
 					Thread.currentThread().interrupt();
 				}
 
-				System.out.println("File not written yet \n");
 				if (activeWebScrape.isScrapingFileWritten()) {
 					System.out.println("File has been written!! \n");
 					break;
@@ -95,6 +94,9 @@ public class Runner {
 			report.generateReport(maxBudget, maxLayovers, directFlight);
 
 		}
+		
+		//exit gui once completed
+		System.exit(0);
 
 	}
 
