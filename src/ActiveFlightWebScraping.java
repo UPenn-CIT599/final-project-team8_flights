@@ -89,7 +89,13 @@ public class ActiveFlightWebScraping {
     this.debugMode = debugMode;
   }
 
-
+  /**
+   * default constructor
+   * <p>
+   * if no parameter is included, the default flight search is
+   * from YVR to ARN with departure flight date at 2020-09-01 and
+   * return flight date at 2020-09-30
+   */
   public ActiveFlightWebScraping() {
 
     // String baseUrl = "https://www.kayak.com/flights/";
@@ -106,6 +112,15 @@ public class ActiveFlightWebScraping {
 
   }
 
+  /** 
+   * this constructor gets four user flight parameters from Runner/GUI class
+   * and concatenate them to generate a complete kayak url search
+   * 
+   * @param departureAirport the departure airport
+   * @param arrivalAirport the arrival airport
+   * @param departureDate the departure date
+   * @param returnDate the return date
+   */
   public ActiveFlightWebScraping(String departureAirport, String arrivalAirport,
       String departureDate, String returnDate) {
     /*
@@ -117,26 +132,31 @@ public class ActiveFlightWebScraping {
     String ranking = "price_a";
 
     // initialize flight scraping info
-    // kayak.com/flights/YVR-ARN/2020-09-01/2020-09-30?sort=bestflight_a
+    // http://kayak.com/flights/YVR-ARN/2020-09-01/2020-09-30?sort=bestflight_a
     this.url = baseUrl + departureAirport + "-" + arrivalAirport + "/" + departureDate + "/"
         + returnDate + "?sort=" + ranking;
 
   }
 
-
-
   /**
-   * 
-   * @param url
+   * this constructor is used for testing purpose to accept a complete kayak url search
+   * <p>
+   * url example: // http://kayak.com/flights/YVR-ARN/2020-09-01/2020-09-30?sort=bestflight_a
+   * @param url the url for kayak flight search
    */
   public ActiveFlightWebScraping(String url) {
     this(url, 0);
   }
 
   /**
-   * 
-   * @param url
-   * @param debugMode
+   * this constructor is used for JUnit testing purpose to accept a complete kayak url search,
+   * and with debug mode set to 1
+   * <p>
+   * url example: // http://kayak.com/flights/YVR-ARN/2020-09-01/2020-09-30?sort=bestflight_a
+   * <p>
+   * debugMode = 0 or 1
+   * @param url the url for kayak flight search
+   * @param debugMode the debug mode, 0 or 1
    */
   public ActiveFlightWebScraping(String url, int debugMode) {
 
@@ -151,7 +171,10 @@ public class ActiveFlightWebScraping {
    * search site. 
    * <p>
    * This active browsing bypasses kayak pop window and provides
-   * load more page function to allow user to load more flight results.
+   * load pages function to allow user to load more flight results.
+   * <p>
+   * The complete html source is saved to inputHtmlFileName.html
+   * for html scraping/parsing
    */
   public void activeWebHtmlLoading() {
 
@@ -250,7 +273,10 @@ public class ActiveFlightWebScraping {
   }
 
   /**
-   * 
+   * webHtmlScraping method uses JSoup libraries to scrape flight info from a 
+   * kayak html source file.
+   * <p>
+   * The scraped information is stored in scrapedFileName for data processing
    */
   public void webHtmlScraping() {
 
@@ -388,12 +414,22 @@ public class ActiveFlightWebScraping {
       fout.close();
 
     } catch (IOException e) {
-      // TODO Auto-generated catch block
+      System.out.println("file IO exception! double check your inputHtmlFile source.");
       e.printStackTrace();
     }
 
   }
 
+  /**
+   * This method re-initializes class instance variables for testing only
+   * 
+   * @param departureAirport the departure airport
+   * @param arrivalAirport the arrival airport
+   * @param departureDate the departure date
+   * @param arrivalDate the arrival date
+   * @param ranking the flight search ranking
+   * @param debugMode the debug mode, 0 or 1
+   */
   public void init(String departureAirport, String arrivalAirport, String departureDate,
       String arrivalDate, String ranking, int debugMode) {
 
@@ -406,17 +442,27 @@ public class ActiveFlightWebScraping {
 
   }
 
+  /**
+   * this method calls activeWebHtmlLoading and webHtmlScraping methods.
+   * <p>
+   * call this run method to execute the complete ActiveFlightWebScraping class.
+   */
   public void run() {
     activeWebHtmlLoading();
     webHtmlScraping();
   }
 
   /**
+   * this method is used to flag when the scrapedFileName file is written complete.
+   * <p>
+   * use this flag to determine when ActiveFlightWebScraping class completes and the
+   * generated file can be accessed.
    * @return the scrapingFileWritten
    */
   public boolean isScrapingFileWritten() {
     return scrapingFileWritten;
   }
+  
   /*
    * public static void main(String[] args) {
    * 

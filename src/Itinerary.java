@@ -1,3 +1,13 @@
+/**
+ * This Itinerary class represents a complete flight itinerary.
+ * <p>
+ * The flight itinerary contains  
+ * itinerary ranking, price, provider, flights, flight book link,
+ * and flight details information.
+ * 
+ * @author cit591 Spring2020 team-8
+ * 
+ */
 public class Itinerary {
   
   private String rank = null;
@@ -67,6 +77,13 @@ public class Itinerary {
     this.details = details;
   }
   
+  /**
+   * this getter method concatenate the flight info, with | separator, 
+   * into one row of String as one complete itinerary 
+   * <p>
+   * use this getter to get one complete itinerary
+   * @return
+   */
   public String getItinerary() {
     
     String itinerary = null;

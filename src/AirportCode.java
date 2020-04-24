@@ -1,15 +1,19 @@
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * The AirportCode class maps the departure and destination cities to their three-letter airport
  * codes.
+ * <p>
+ * This class uses "airports.dat.txt" database downloaded from OpenFlights.
+ * It maps city to airport by mapping city names from the database, checks if airport name contains
+ * "international" to determine the airport code.
+ * <p>
+ * If there are multiple airports within the same city, user can also input cityName.airportCode 
+ * to return the same airport code.
+ * 
+ * @author cit591 Spring2020 team-8
  */
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-
 public class AirportCode {
 
   private ArrayList<Airport> totalAirports = new ArrayList<>();
@@ -46,26 +50,6 @@ public class AirportCode {
     if (destAirportCode.length() == 3) {
       destCodeFound = true;
     }
-
-    /*
-     * try { Scanner scanner = new Scanner(file); scanner.nextLine(); // skip the first line with
-     * the headers
-     * 
-     * while (scanner.hasNextLine()) {
-     * 
-     * //read a row of data, split data into city and airport code String codesRow =
-     * scanner.nextLine(); String[] columnData = codesRow.split(","); String readCity =
-     * columnData[0];
-     * 
-     * //store dept airport code if departure city correctly maps to it if
-     * (deptCity.equalsIgnoreCase(readCity)) { deptAirportCode = columnData[1]; deptCodeFound =
-     * true; }
-     * 
-     * //store dest airport code if destination city correctly maps to it if
-     * (destCity.equalsIgnoreCase(readCity)) { destAirportCode = columnData[1]; destCodeFound =
-     * true; } } scanner.close(); } catch (FileNotFoundException e) { // TODO Auto-generated catch
-     * block e.printStackTrace(); }
-     */
 
     // if we can map both departure and destination cities to airport codes, set boolean to true,
     // otherwise keep as false.
