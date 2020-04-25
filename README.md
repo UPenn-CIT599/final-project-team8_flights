@@ -45,16 +45,16 @@ external download link: https://chromedriver.storage.googleapis.com/index.html?p
 
 ## Classes:
 * ActiveFlightWebScraping Class
+* Airport Class
 * AirportCode Class
+* AirportReader Class
 * DataReader Class
 * Flights Class
-* FlightWebScraping Class
-* FlightWebScraping Runner Class
 * GraphicalUserInterface Class
 * Itinerary Class
-* Main Class
 * Recommender Class
 * ReportGenerator Class
+* Runner
 
 ### Test Classes:
 **CHRIS TO ADD**
