@@ -20,7 +20,6 @@ public class DataReader {
 		File flightData = new File("ScrapedFlightData.txt");
 		try {
 			Scanner scan = new Scanner(flightData);
-			// scan.nextLine();//skip the first line
 			while (scan.hasNextLine()) {
 				String line = scan.nextLine();
 				String[] dataLine = line.split("\\|");
@@ -31,7 +30,6 @@ public class DataReader {
 				
 				int flightPrice = 0;
 				if (!dataLine[1].isEmpty()) {
-				  //System.out.println(dataLine[1].toString());
 				  flightPrice = Integer.parseInt(dataLine[1].replace("$", "").trim());
 				} else break;
 				
@@ -55,11 +53,6 @@ public class DataReader {
 
 		}
 		return flightList;
-	}
-	
-	public static void main(String[] args) {
-	  DataReader dataReader = new DataReader();
-	  dataReader.readCSV();
 	}
 
 }

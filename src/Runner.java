@@ -44,12 +44,31 @@ public class Runner {
 		// create new instance of AirportCode class
 		AirportCode airportCode = new AirportCode("airportCodeList.txt", gui.getDeptCity(), gui.getDestCity());
 
-		// exit program if user inputs an invalid destination or departure city name,
-		// otherwise get airport codes
-		if (!airportCode.isValidAirports()) {
-			System.out.println("Please enter valid cities. Try running the program again\n");
+		// inform user through terminal and exit program if user inputs an invalid destination/departure city name,
+		// or a max-budget value other than a positive integer. Otherwise, get airport codes
+		if (!airportCode.isValidDeptAirport()) {
+			System.out.println(
+					"Airport code could not be found for departure city. Please check the city name and/or spelling and try running the program again\n");
+		}	
+		if (!airportCode.isValidDestAirport()) {
+				System.out.println(
+						"Airport code could not be found for destination city. Please check the city name and/or spelling and try running the program again\n");
+			}
+		if(!airportCode.isValidDeptAirport()||!airportCode.isValidDestAirport()) {
 			System.exit(0);
 		} else {
+			try {
+				int intMaxBudget = Integer.parseInt(gui.getMaxBudget());
+				if (intMaxBudget <= 0) {
+					System.out.println("Maximum budget field requires a positive integer. Please run program again and check this field");
+					System.exit(0);
+				}
+			} catch (Exception e) {
+				System.out.println(
+						"Maximum budget field requires a positive integer. Please run program again and check this field");
+				System.exit(0);
+			}
+
 			System.out.println("Starting web-scraper!\n");
 			String deptAirportCode = airportCode.getDeptAirportCode();
 			String destAirportCode = airportCode.getDestAirportCode();
@@ -94,8 +113,8 @@ public class Runner {
 			report.generateReport(maxBudget, maxLayovers, directFlight);
 
 		}
-		
-		//exit gui once completed
+
+		// exit gui once completed
 		System.exit(0);
 
 	}

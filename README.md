@@ -92,6 +92,20 @@ The figure below shows an example of the final state of the GUI upon entering in
   <img width="318" height="240" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/gui_final_state.PNG?raw=true">
 </p>
 
+#### Viewing the GUI on a MAC
+
+If running this program on a MAC, the user may initially see the GUI as a blank window as shown below. 
+
+<p align="center">
+  <img width="477" height="360" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/mac_gui_screencapture1.png?raw=true">
+</p>
+
+The user should slightly expand the size of the window in order to view the components of the GUI as intended. 
+
+<p align="center">
+  <img width="477" height="360" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/mac_gui_screencapture2.png?raw=true">
+</p>
+
 
 #### Handling input errors
 
@@ -99,6 +113,7 @@ The program handles the following user input errors:
 * No dates selected - sets default departure date to today's date, and return date to one month from today's date
 * Incorrect spelling / invalid cities entered - program print's a message to the terminal and exists. User to retry with valid city names
 * At present, the program reads in city names and maps them to an airport code based on a predefined list of cities and airport codes. Occasionally, a city will have several airport codes, which the program automatically selects somewhat arbitrarily. If the user would prefer a particular airport code to be used for a city, they can enter cityname.airport code in the GUI city field. For example, entering Stockholm.arn in the departure city field would ensure that Stockholm Arlanda Airport is used as the airport for the departure city.
+* An invalid max-budget value is entered by the user (i.e. anything other than a positive integer - e.g. negative integer, or a string/char/double) - program print's a message to the terminal and exists. User to retry with valid input for this field. 
 * Max layovers not selected - defaults to value of 1
 * Max budget not entered - defaults to 5000
 
@@ -130,7 +145,7 @@ The state of the terminal will look similar to the screenshot below. Note that t
 Once the webscraping is complete, the program will generate a report of the top five flights (or less if there aren't a sufficient number of flights meeting the user's criteria) in a report.txt file. The user will be prompted with a message once the report has been generated, as shown below.
 
 <p align="center">
-  <img width="600" height=150" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_done.PNG?raw=true">
+  <img width="600" height=130" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/program_done.PNG?raw=true">
 </p>
 
 Finally, the report.txt file can be found in the project folder. This file contains summaries of the top flights, details, and web links to book, as shown below. If no valid flights are found, a message is displayed to the user asking to revise some of the input parameters and to retry. 
