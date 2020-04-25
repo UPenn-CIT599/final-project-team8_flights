@@ -26,11 +26,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * <li><b>ActiveWebHtmlLoading</b> method uses selenium WebDriver binding tool to instantiate and
  * control Chrome web browser to get flight information from kayak.com with specific searching
  * criteria including departure/arrival airports and dates. It stores html source into a html file
- * for scraping.
+ * for scraping.</li>
  * <li><b> WebHtmlScraping</b> method loads the stored html file and scrapes flight info in
  * interest. From the scraped flight information, each itinerary and flight data is stored into a
- * .txt file for data processing class.
- * 
+ * .txt file for data processing class.</li>
+ * </p>
  * @author cit591 Spring2020 team-8
  */
 public class ActiveFlightWebScraping {
@@ -324,8 +324,7 @@ public class ActiveFlightWebScraping {
         itinerary.setPrice(itineraryPriceProvider.get(0).text().split(" ")[0]);
         itinerary.setProvider(itineraryPriceProvider.get(0).text().split(" ")[1]);
 
-        // fly-out parsing
-        // section times contains
+        // fly-out (departure flight) flight info parsing
         System.out.print("Flyout info...");
         Flights flyOut = new Flights();
 
@@ -362,8 +361,7 @@ public class ActiveFlightWebScraping {
         //System.out.print(flyOut.getFlights());
         //System.out.print("\n");
 
-        // fly-out parsing
-        // section times contains
+        // fly-in (return flight) flight info parsing
         System.out.print("Flyin info...");
         Flights flyIn = new Flights();
 

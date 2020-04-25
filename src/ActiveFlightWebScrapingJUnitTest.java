@@ -13,9 +13,12 @@ import org.junit.jupiter.api.*;;
  * and compare the result against the known flight info.
  * <p>
  * This class consists of five test cases.
- * <p>
- * First test checks generated scraped file's top rank and rank 5 flight fare. Second test checks
- * generated scraped file's lowest rank flight fare.
+ * <li> test case 1 checks if ActiveWebScraping runs starts and run correctly by reading the page title </li>
+ * <li> test case 2 checks number of rows are in the scraped data file. </li>
+ * <li> test case 3 checks row 1 flight price from the scraped data file </li>
+ * <li> test case 4 checks row 9 flight price from the scraped data file </li>
+ * <li> test case 5 checks row 2 flight departure time from the scraped data file </li>
+ * <li> test case 6 checks row 3 flight arrival time from the scraped data file </li>
  * </p>
  * WARNING: import java.junit.jupiter.api.* for BeforeAll and Test, as these are JUnit 5 libraries,
  * this is not compatible with JUnit4
@@ -24,18 +27,32 @@ class ActiveFlightWebScrapingJUnitTest {
 
   static ArrayList<String> scrapedData;
   static String url = "https://www.kayak.com/flights/YVR-ARN/2020-09-01/2020-09-30?sort=price_a";
-  //static String pageTitle = "YVR to ARN, 9/1 — 9/30";
+  static int debugMode = 1;
+  static String pageTitle = null;
 
   /**
-   * Instantiate FlightWebScraping with flight info and set debug mode. Read and store scraped data
-   * and parsed data as arrayList for testing.
+   * Instantiate ActiveFlightWebScraping with flight info and debug mode set to 1. Read and store scraped data
+   * and parsed data to ScrapedFlightData.txt for testing.
    */
   @BeforeAll
   public static void fileGenerationForTesting() {
     
     scrapedData = new ArrayList<>();
 
-    String scrapedFileName = "JUnitScrapedFlightData.txt";
+    // initialize flight scraping info
+    ActiveFlightWebScraping newFlight = new ActiveFlightWebScraping(url, debugMode);
+
+    // set number of page to load (set it to 1, default is 3)
+    newFlight.setPageLoad(1);
+    newFlight.run();
+    
+    // waiting for sraping file to be written
+    while(!newFlight.isScrapingFileWritten()) {
+      System.out.println("waiting for scraping complete...");
+    }
+    pageTitle = newFlight.getPageTitle();
+
+    String scrapedFileName = "ScrapedFlightData.txt";
     File inputFile;
     
     System.out.println("JUnit Test for ActiveFlightWebScraping class starts here.");
@@ -56,29 +73,18 @@ class ActiveFlightWebScrapingJUnitTest {
   }
 
   /**
-   * check if ActiveWebScraping runs starts and run correctly by reading the page title
+   * Test case 1 checks if ActiveWebScraping runs starts and run correctly by reading the page title
    */
   @Test
   public void ActiveFlightWebScrapingRunTest() {
-    // initialize flight scraping info
-    ActiveFlightWebScraping newFlight = new ActiveFlightWebScraping(url, 1);
-
-    // set number of page to load (default is 3)
-    newFlight.setPageLoad(1);
-    newFlight.run();
     
-    // waiting for sraping file to be written
-    while(!newFlight.isScrapingFileWritten()) {
-      System.out.println("waiting for scraping complete...");
-    }
-    
-    System.out.println("page title: " + newFlight.getPageTitle());
-    assertEquals("YVR to ARN, 9/1 — 9/30", newFlight.getPageTitle(), 
+    System.out.println("page title: " + pageTitle);
+    assertEquals("YVR to ARN, 9/1 — 9/30", pageTitle , 
         "Expected webscraping page title is : Book now: YVR to ARN, 9/1 — 9/30");
   }
 
   /**
-   * check if number of rows in the scraped data file is 45
+   * Test case 2 checks if number of rows in the scraped data file
    */
   @Test
   public void scrapedDataNumberOfRowsTest() {
@@ -88,7 +94,7 @@ class ActiveFlightWebScrapingJUnitTest {
   }
 
   /**
-   * check rank 1 flight price from the scraped data file is $847
+   * Test case 3 checks row 1 flight price from the scraped data file
    */
   @Test
   public void scrapedRankOneFlightCost() {
@@ -99,10 +105,10 @@ class ActiveFlightWebScrapingJUnitTest {
   }
 
   /**
-   * check rank 9 flight price from the scraped data file is $874
+   * Test case 4 checks row 9 flight price from the scraped data file
    */
   @Test
-  public void scrapedRankFiveFlightCost() {
+  public void scrapedRankNineFlightCost() {
     String rankFiveFare = null;
     rankFiveFare = scrapedData.get(9-1).split("\\|")[1].trim();
     System.out.println("rank 9 price: " + rankFiveFare);
@@ -110,7 +116,7 @@ class ActiveFlightWebScrapingJUnitTest {
   }
   
   /**
-   * check rank 2 flight departure time from the scraped data file is 8:55 pm
+   * Test case 5 checks row 2 flight departure time from the scraped data file
    */
   @Test
   public void scrapedRankTwoDeptTime() {
@@ -121,7 +127,7 @@ class ActiveFlightWebScrapingJUnitTest {
   }
   
   /**
-   * check rank 3 flight arrival time from the scraped data file is $874
+   * Test case 6 checks row 3 flight arrival time from the scraped data file
    */
   @Test
   public void scrapedRankThreeArrivalTime() {
