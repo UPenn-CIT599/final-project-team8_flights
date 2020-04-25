@@ -10,15 +10,15 @@ import java.awt.event.*;
 import java.util.Calendar;
 import java.util.Properties;
 
-
-
-/**The Graphical User Interface class sets up the GUI for user interaction. 
- * It reads and stores data various pieces of flight information from user, 
- * including the departure and arrival cities, the departure time and date,
- * and additional constraints such as if the user would prefer only direct
- * flights, or if not the max no of lay-overs, and the maximum budget for the
- * entire trip.
- * This information is then passed to the web-scraping and report generator classes*/
+/**
+ * The Graphical User Interface class sets up the GUI for user interaction. It
+ * reads and stores data various pieces of flight information from user,
+ * including the departure and arrival cities, the departure time and date, and
+ * additional constraints such as if the user would prefer only direct flights,
+ * or if not the max no of lay-overs, and the maximum budget for the entire
+ * trip. This information is then passed to the web-scraping and report
+ * generator classes
+ */
 public class GraphicalUserInterface {
 
 	/*
@@ -435,8 +435,6 @@ public class GraphicalUserInterface {
 		});
 
 	}
-	
-	
 
 	/**
 	 * @return the deptCity

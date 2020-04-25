@@ -23,22 +23,24 @@ public class DataReader {
 			while (scan.hasNextLine()) {
 				String line = scan.nextLine();
 				String[] dataLine = line.split("\\|");
-				
+
 				// if any of the columns is missing
 				// skip the line
-				if (dataLine.length <21) break;
-				
+				if (dataLine.length < 21)
+					break;
+
 				int flightPrice = 0;
 				if (!dataLine[1].isEmpty()) {
-				  flightPrice = Integer.parseInt(dataLine[1].replace("$", "").trim());
-				} else break;
-				
+					flightPrice = Integer.parseInt(dataLine[1].replace("$", "").trim());
+				} else
+					break;
+
 				String[] layover = dataLine[7].split(" ");
-				
+
 				// number of layover is preset to 0 for nonstop flights
 				int numberLayover = 0;
-				if(layover.length > 1) {
-				  numberLayover = Integer.parseInt(layover[0]);
+				if (layover.length > 1) {
+					numberLayover = Integer.parseInt(layover[0]);
 				}
 				String flightDetail = dataLine[20];
 				String flightLink = dataLine[19];
