@@ -61,9 +61,14 @@ external download link: https://chromedriver.storage.googleapis.com/index.html?p
 * Runner
 
 ### Test Classes:
+
+The JUnit tests should be run in the order shown below:
+
 * ActiveFlightWebScrapingJUnitTest Class
 * AirportCodeJUnitTest Class
 * RecommenderJUnitTest Class
+
+
 
 # User Guide
 
