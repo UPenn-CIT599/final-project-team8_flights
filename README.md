@@ -57,7 +57,9 @@ external download link: https://chromedriver.storage.googleapis.com/index.html?p
 * Runner
 
 ### Test Classes:
-**CHRIS TO ADD**
+* ActiveFlightWebScrapingJUnitTest Class
+* AirportCodeJUnitTest Class
+* RecommenderJUnitTest Class
 
 # User Guide
 
