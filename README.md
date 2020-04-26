@@ -32,6 +32,10 @@
   <img width="625" height="500" src="https://github.com/UPenn-CIT599/final-project-team8_flights/blob/master/eclipse_text_setting.JPG?raw=true">
 </p>
 
+**6. Web Browser**
+
+* The Google Chrome browser is required to the run the driver.
+
 
 ## External download links (reference only)
 ### JSoup
