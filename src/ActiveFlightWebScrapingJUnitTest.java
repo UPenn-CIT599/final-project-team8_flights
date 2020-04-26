@@ -91,7 +91,7 @@ class ActiveFlightWebScrapingJUnitTest {
   public void scrapedDataNumberOfRowsTest() {
 
     System.out.println("test2) total number of rows scraped in scrapedData: " + scrapedData.size());
-    assertEquals(60, scrapedData.size(), "Check total number of rows in ScrapedFlightData.txt");
+    assertEquals(30, scrapedData.size(), "Check total number of rows in ScrapedFlightData.txt");
   }
 
   /**
@@ -102,7 +102,7 @@ class ActiveFlightWebScrapingJUnitTest {
     String rowOneFare = null;
     rowOneFare = scrapedData.get(1 - 1).split("\\|")[1].trim();
     System.out.println("test3) row 1 price: " + rowOneFare);
-    assertEquals("$663", rowOneFare, "Check row one flight fare!");
+    assertEquals("$878", rowOneFare, "Check row one flight fare!");
   }
 
   /**
@@ -113,7 +113,7 @@ class ActiveFlightWebScrapingJUnitTest {
     String rowLastFare = null;
     rowLastFare = scrapedData.get(scrapedData.size()-1).split("\\|")[1].trim();
     System.out.println("test4) row last price: " + rowLastFare);
-    assertEquals("$839", rowLastFare, "Checks row nine flight fare!");
+    assertEquals("$884", rowLastFare, "Checks row nine flight fare!");
   }
 
   /**
@@ -124,7 +124,7 @@ class ActiveFlightWebScrapingJUnitTest {
     String rowTwoDeptTime = null;
     rowTwoDeptTime = scrapedData.get(2 - 1).split("\\|")[5].trim();
     System.out.println("test5) rank 2 departure time: " + rowTwoDeptTime);
-    assertEquals("11:40 pm", rowTwoDeptTime, 
+    assertEquals("6:25 pm", rowTwoDeptTime, 
         "Checks row two departure time!");
   }
 
