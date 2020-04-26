@@ -42,8 +42,8 @@ public class RecommenderJUnitTest {
     public void ReportGenMaxBudgetTest1() {
       rec.getFlightDetails(880, 2);
       System.out.println("test1) number of flights matching max budget search criteria: " + rec.getFlightListSize());
-      assertEquals(4, rec.getFlightListSize(),
-          "Expected number of flights : 4");
+      assertEquals(2, rec.getFlightListSize(),
+          "Expected number of flights : 2");
     }
     
     /**
@@ -51,41 +51,52 @@ public class RecommenderJUnitTest {
      */
     @Test
     public void ReportGenMaxBudgetTest2() {
-      rec.getFlightDetails(600, 2);
+      rec.getFlightDetails(885, 2);
       System.out.println("test2) number of flights matching max budget search criteria: " + rec.getFlightListSize());
+      assertEquals(5, rec.getFlightListSize(),
+          "Expected number of flights : 0");
+    }
+
+    /**
+     * <b>Test case 3</b> checks if Recommender class returns correct flight search if no match with max budget parameter
+     */
+    @Test
+    public void ReportGenMaxBudgetTest3() {
+      rec.getFlightDetails(600, 2);
+      System.out.println("test3) number of flights matching max budget search criteria: " + rec.getFlightListSize());
       assertEquals(0, rec.getFlightListSize(),
           "Expected number of flights : 0");
     }
 
     /**
-     * <b>Test case 3</b> checks if Recommender class returns correct flight search with max layover parameter
+     * <b>Test case 4</b> checks if Recommender class returns correct flight search with max layover parameter
      */
     @Test
     public void ReportGenMaxLayouverTest1() {
       rec.getFlightDetails(2000, 3);
-      System.out.println("test3) number of flights matching max layover search criteria: " + rec.getFlightListSize());
+      System.out.println("test4) number of flights matching max layover search criteria: " + rec.getFlightListSize());
       assertEquals(5, rec.getFlightListSize(),
           "Expected number of flights : 5");
     }
     
     /**
-     * <b>Test case 4</b> checks if Recommender class returns correct flight search with max layover parameter
+     * <b>Test case 5</b> checks if Recommender class returns correct flight search with max layover parameter
      */
     @Test
     public void ReportGenMaxLayoverTest2() {
       rec.getFlightDetails(2000, 2);
-      System.out.println("test4) number of flights matching max layover search criteria: " + rec.getFlightListSize());
+      System.out.println("test5) number of flights matching max layover search criteria: " + rec.getFlightListSize());
       assertEquals(5, rec.getFlightListSize(),
           "Expected number of flights : 5");
     }
 
     /**
-     * <b>Test case 5</b> checks if Recommender class returns correct flight search with max layover parameter
+     * <b>Test case 6</b> checks if Recommender class returns correct flight search with max layover parameter
      */
     @Test
     public void ReportGenMaxLayoverTest3() {
       rec.getFlightDetails(2000, 0);
-      System.out.println("test4) number of flights matching max layover search criteria: " + rec.getFlightListSize());
+      System.out.println("test6) number of flights matching max layover search criteria: " + rec.getFlightListSize());
       assertEquals(0, rec.getFlightListSize(),
           "Expected number of flights : 0");
     }

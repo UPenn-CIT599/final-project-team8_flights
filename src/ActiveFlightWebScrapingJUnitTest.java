@@ -54,7 +54,7 @@ class ActiveFlightWebScrapingJUnitTest {
     }
 
     pageTitle = newFlight.getPageTitle();
-    
+
     String scrapedFileName = "ScrapedFlightData.txt";
     File inputFile;
 
@@ -83,7 +83,7 @@ class ActiveFlightWebScrapingJUnitTest {
     assertEquals("YVR to ARN, 9/1 — 9/30", pageTitle,
         "Expected webscraping page title is : Book now: YVR to ARN, 9/1 — 9/30");
   }
-
+  
   /**
    * <b>Test case 2</b> checks total number of rows in the scraped data file
    */
@@ -91,7 +91,7 @@ class ActiveFlightWebScrapingJUnitTest {
   public void scrapedDataNumberOfRowsTest() {
 
     System.out.println("test2) total number of rows scraped in scrapedData: " + scrapedData.size());
-    assertEquals(30, scrapedData.size(), "Check total number of rows in ScrapedFlightData.txt");
+    assertEquals(15, scrapedData.size(), "Check total number of rows in ScrapedFlightData.txt");
   }
 
   /**
