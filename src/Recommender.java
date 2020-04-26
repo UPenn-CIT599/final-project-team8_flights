@@ -8,8 +8,11 @@ import java.util.HashMap;
  *
  */
 public class Recommender {
-	ArrayList<Flights> flightList = new ArrayList<Flights>();
+    
+    private static int flightListSize = 0;
+    ArrayList<Flights> flightList = new ArrayList<Flights>();
 
+	
 	public Recommender(ArrayList<Flights> flightList) {
 		this.flightList = flightList;
 	}
@@ -40,7 +43,12 @@ public class Recommender {
 			}
 
 		}
+		flightListSize = tmpFlightList.size();
 		return tmpFlightList;
+	}
+	
+	public int getFlightListSize() {
+	  return flightListSize;
 	}
 
 }

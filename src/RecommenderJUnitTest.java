@@ -1,21 +1,15 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import org.junit.jupiter.api.*;;
 
 /**
- * Class to test ReportGenerator class by checking if its input parameters are covered including
- * priceLimit, layoverLimit, and directFlight
+ * Class to test Recommender class by checking if its input parameters are covered including
+ * priceLimit and layoverLimit
  * <p>
  * This JUnit test class consists of 3 test cases:
- * <li>test 1 test Airport and AirportReader classes by checking airports arraylist.</li>
- * <li>test 2 focus on testing AirportCode and its search method by changing departure city name parameter</li>
- * <li>test 3 focus on testing AirportCode and its search method by changing destination city name parameter</li>
- * <li>test 4 focus on testing AirportCode and its search method if city name parameter is empty</li>
- * </p>
+ * <li>test 1-2 test Recommender classes by checking max budget search criteria.</li>
+ * <li>test 3-5 test Recommender classes by checking max layover search criteria.</li>
  * <p>
  * <b>NOTE:</b> Run this test after ActiveFlightWebScrapingJUnitTest as the checking are based on a known 
  * JUnitKayakFlightinfo.html file which generates a known ScrapedFlightData.txt file.
@@ -26,41 +20,74 @@ import org.junit.jupiter.api.*;;
  * </p>
  */
 
-public class ReportGeneratorJUnitTest {
+public class RecommenderJUnitTest {
     
-    static ReportGenerator report = new ReportGenerator();
-    static ArrayList<String> reportData = new ArrayList();
-
+    private static Recommender rec;
 
     @BeforeAll
     public static void fileDeletionForTesting() {
 
-      System.out.println("JUnit Test for ReportGenerator class starts here.");
+      System.out.println("JUnit Test for Recommender class starts here.");
       
-      String reportFileName = "report.txt";
-      
-      File file = new File(reportFileName); 
-      
-      if(file.delete()) 
-      { 
-          System.out.println("File deleted successfully"); 
-      } 
-      else
-      { 
-          System.out.println("File is already deleted"); 
-      }
+      DataReader read = new DataReader();
+      ArrayList<Flights> flightList = read.readCSV();
+      rec = new Recommender(flightList);
+
     }
     
     /**
-     * <b>Test case 1</b> checks if ActiveWebScraping runs starts and run correctly by reading the page title
+     * <b>Test case 1</b> checks if Recommender class returns correct flight search with max budget parameter
      */
     @Test
-    public void ReportGenMaxBudgetTest() {
-      
-      report.generateReport(840, 5, false);      
-      System.out.println("test1) page title: " + "test");
-      assertEquals("YVR to ARN, 9/1 — 9/30", "test",
-          "Expected webscraping page title is : Book now: YVR to ARN, 9/1 — 9/30");
+    public void ReportGenMaxBudgetTest1() {
+      rec.getFlightDetails(880, 2);
+      System.out.println("test1) number of flights matching max budget search criteria: " + rec.getFlightListSize());
+      assertEquals(4, rec.getFlightListSize(),
+          "Expected number of flights : 4");
+    }
+    
+    /**
+     * <b>Test case 2</b> checks if Recommender class returns correct flight search if no match with max budget parameter
+     */
+    @Test
+    public void ReportGenMaxBudgetTest2() {
+      rec.getFlightDetails(600, 2);
+      System.out.println("test2) number of flights matching max budget search criteria: " + rec.getFlightListSize());
+      assertEquals(0, rec.getFlightListSize(),
+          "Expected number of flights : 0");
+    }
+
+    /**
+     * <b>Test case 3</b> checks if Recommender class returns correct flight search with max layover parameter
+     */
+    @Test
+    public void ReportGenMaxLayouverTest1() {
+      rec.getFlightDetails(2000, 3);
+      System.out.println("test3) number of flights matching max layover search criteria: " + rec.getFlightListSize());
+      assertEquals(5, rec.getFlightListSize(),
+          "Expected number of flights : 5");
+    }
+    
+    /**
+     * <b>Test case 4</b> checks if Recommender class returns correct flight search with max layover parameter
+     */
+    @Test
+    public void ReportGenMaxLayoverTest2() {
+      rec.getFlightDetails(2000, 2);
+      System.out.println("test4) number of flights matching max layover search criteria: " + rec.getFlightListSize());
+      assertEquals(5, rec.getFlightListSize(),
+          "Expected number of flights : 5");
+    }
+
+    /**
+     * <b>Test case 5</b> checks if Recommender class returns correct flight search with max layover parameter
+     */
+    @Test
+    public void ReportGenMaxLayoverTest3() {
+      rec.getFlightDetails(2000, 0);
+      System.out.println("test4) number of flights matching max layover search criteria: " + rec.getFlightListSize());
+      assertEquals(0, rec.getFlightListSize(),
+          "Expected number of flights : 0");
     }
 
 }
