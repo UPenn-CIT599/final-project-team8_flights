@@ -3,7 +3,7 @@
  * <p>
  * The flight itinerary contains itinerary ranking, price, provider, flights,
  * flight book link, and flight details information.
- * 
+ * <p>
  * @author cit591 Spring2020 team-8
  * 
  */
@@ -82,7 +82,7 @@ public class Itinerary {
 	 * <p>
 	 * use this getter to get one complete itinerary
 	 * 
-	 * @return
+	 * @return itinerary - String of itinerary info with | separator
 	 */
 	public String getItinerary() {
 

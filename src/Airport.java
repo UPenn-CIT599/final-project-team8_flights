@@ -1,3 +1,9 @@
+/**
+ * This class represents one Airport with information of airport name,
+ * city name, coutry name, and airport code 
+ * 
+ * @author cit591 Spring2020 team-8
+ */
 public class Airport {
 
 	private int airportID = 156;

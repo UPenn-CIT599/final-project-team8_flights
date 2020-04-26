@@ -8,7 +8,8 @@ import java.util.Scanner;
  * Class to map the departure and destination cities to their three-letter airport
  * codes. It consists one main searchAirport method to screen for international airports
  * and return the corresponding airport code
- * </p>
+ * 
+ * @author cit591 Spring2020 team-8
  */
 public class AirportCode {
 

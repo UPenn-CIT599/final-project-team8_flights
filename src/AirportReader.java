@@ -1,6 +1,12 @@
 import java.util.*;
 import java.io.*;
 
+/**
+ * This class is an array list of Airport stores airport information per airport 
+ * from airport database
+ * 
+ * @author cit591 Spring2020 team-8
+ */
 public class AirportReader {
 
 	/*
