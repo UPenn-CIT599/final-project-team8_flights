@@ -267,17 +267,18 @@ public class ActiveFlightWebScraping {
 		File fin;
 		FileWriter fout;
 
-		try {
+        // set to a known html file if debugMode is 1
+        if (debugMode == 1) {
+            inputHtmlFileName = testHtmlFileName;
+        }
 
-			// set to a known html file if debugMode is 1
-			if (debugMode == 1) {
-				inputHtmlFileName = testHtmlFileName;
-			}
+		try {
 
 			fin = new File(inputHtmlFileName);
 			Document document = Jsoup.parse(fin, "UTF-8");
 
 			fout = new FileWriter(scrapedFileName);
+			
 			BufferedWriter scraped = new BufferedWriter(fout);
 
 			Itinerary itinerary = new Itinerary();
@@ -358,9 +359,9 @@ public class ActiveFlightWebScraping {
 
 				itinerary.setFlyOut(flyOut);
 				itinerary.setFlyIn(flyIn);
-				// System.out.println(itinerary.getItinerary());
+				//System.out.println(itinerary.getItinerary());
 				scraped.append(itinerary.getItinerary() + "\n");
-				fout.append(itinerary.getItinerary() + "\n");
+				//fout.append(itinerary.getItinerary() + "\n");
 
 			}
 
