@@ -1,15 +1,15 @@
-
-/**
- * The AirportCode class maps the departure and destination cities to their three-letter airport
- * codes.
- */
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Class to map the departure and destination cities to their three-letter airport
+ * codes. It consists one main searchAirport method to screen for international airports
+ * and return the corresponding airport code
+ * </p>
+ */
 public class AirportCode {
 
 	private ArrayList<Airport> totalAirports = new ArrayList<>();
@@ -57,6 +57,15 @@ public class AirportCode {
 		}
 	}
 
+	/**
+	 * searchAirport method first creates an HashMap to map all airports with the same 
+	 * city name from an instance of airportReader arraylist. and from the Hashmap, 
+	 * it screens for international airports, strips down the other airports,
+	 * and returns airport code
+	 * 
+	 * @param city - city name to search for airport
+	 * @return airportCode - IATA code representing the airport
+	 */
 	public String searchAirport(String city) {
 
 		String airportCode = "Not Found";
